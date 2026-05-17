@@ -148,15 +148,28 @@ Se você publicar o repositório no GitHub, as pessoas podem instalar assim:
 npm install -g git+https://github.com/<seu_usuario>/<seu_repositorio>.git
 ```
 
-> Se aparecer `Permission denied (publickey)`, use a versão ZIP do GitHub para evitar SSH:
+> Atenção: esse comando pode ainda tentar usar o Git e abrir a janela de login do GitHub, porque o `git` no seu computador pode estar configurado para usar SSH. Se isso acontecer, use um tarball do GitHub:
 >
 > ```
-npm install -g https://github.com/<seu_usuario>/<seu_repositorio>/archive/refs/heads/main.zip
+npm install -g https://github.com/<seu_usuario>/<seu_repositorio>/archive/refs/heads/main.tar.gz
 ```
 >
-> Essa versão ZIP baixa apenas o código e não exige login GitHub durante a instalação.
+> Se o branch principal for `master`, use:
 >
-> Outra opção é publicar o pacote no npm e instalar com:
+> ```
+npm install -g https://github.com/<seu_usuario>/<seu_repositorio>/archive/refs/heads/master.tar.gz
+```
+>
+> Esses comandos baixam o código direto do GitHub como tarball e não exigem autenticação SSH/GitHub no terminal.
+>
+> Se você preferir baixar manualmente, basta abrir a URL no navegador, descompactar e executar:
+>
+> ```
+cd <pasta-do-projeto>
+npm install -g .
+```
+>
+> Outra opção futura é publicar o pacote no npm e instalar com:
 >
 > ```
 npm install -g <seu-nome-de-usuario>/<seu-pacote>
