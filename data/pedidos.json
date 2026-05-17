@@ -1,0 +1,137 @@
+[
+    {
+        "codigoRastreio": "BR1234567890001",
+        "contaShopee": "conta_ficticia_1",
+        "cliente": {
+            "nome": "Cliente Exemplo 1",
+            "cpf": "000.000.000-01",
+            "telefone": "11999990001",
+            "amazonId": "000-0000000-0000001",
+            "endereco": {
+                "rua": "Rua Fictícia 1",
+                "numero": "100",
+                "complemento": "Ap 101",
+                "bairro": "Bairro Teste",
+                "cidade": "Cidade Exemplo",
+                "estado": "SP",
+                "cep": "00000-001"
+            }
+        },
+        "produto": {
+            "nome": "Produto Exemplo A",
+            "categoria": "outros",
+            "asin": "",
+            "precoCusto": 10,
+            "precoVenda": 20
+        },
+        "rastreio": {
+            "codigo": "BR1234567890001",
+            "transportadora": "transporte_ficticio",
+            "status": "transito",
+            "dataEnvio": "2026-05-12",
+            "dataEntrega": null
+        },
+        "pagamento": {
+            "metodo": "pix",
+            "status": "pago"
+        },
+        "links": {
+            "produto": "https://example.com/produto/exemplo-a",
+            "rastreio": null,
+            "maps": "https://www.google.com/maps/search/?api=1&query=Rua+Fictícia+1,+100,+Cidade+Exemplo+SP"
+        },
+        "observacoes": "",
+        "id": 1,
+        "dataCadastro": "2026-05-12"
+    },
+    {
+        "codigoRastreio": "BR1234567890002",
+        "contaShopee": "conta_ficticia_2",
+        "cliente": {
+            "nome": "Cliente Exemplo 2",
+            "cpf": "000.000.000-02",
+            "telefone": "11999990002",
+            "amazonId": "000-0000000-0000002",
+            "endereco": {
+                "rua": "Rua Fictícia 2",
+                "numero": "200",
+                "complemento": "Casa 2",
+                "bairro": "Bairro Demo",
+                "cidade": "Cidade Exemplo",
+                "estado": "SP",
+                "cep": "00000-002"
+            }
+        },
+        "produto": {
+            "nome": "Produto Exemplo B",
+            "categoria": "outros",
+            "asin": "B000TEST001",
+            "precoCusto": 14.59,
+            "precoVenda": 22.47
+        },
+        "rastreio": {
+            "codigo": "BR1234567890002",
+            "transportadora": "transporte_ficticio",
+            "status": "transito",
+            "dataEnvio": "2026-05-12",
+            "dataEntrega": null
+        },
+        "pagamento": {
+            "metodo": "cartao",
+            "status": "pago"
+        },
+        "links": {
+            "produto": "https://example.com/produto/exemplo-b",
+            "rastreio": null,
+            "maps": "https://www.google.com/maps/search/?api=1&query=Rua+Fictícia+2,+200,+Cidade+Exemplo+SP"
+        },
+        "observacoes": "",
+        "id": 2,
+        "dataCadastro": "2026-05-12"
+    },
+    {
+        "codigoRastreio": "BR1234567890003",
+        "contaShopee": "conta_ficticia_3",
+        "cliente": {
+            "nome": "Cliente Exemplo 3",
+            "cpf": "000.000.000-03",
+            "telefone": "11999990003",
+            "amazonId": "000-0000000-0000003",
+            "endereco": {
+                "rua": "Rua Fictícia 3",
+                "numero": "300",
+                "complemento": "Sala 3",
+                "bairro": "Bairro Demo",
+                "cidade": "Cidade Exemplo",
+                "estado": "SP",
+                "cep": "00000-003"
+            }
+        },
+        "produto": {
+            "nome": "Produto Exemplo C",
+            "categoria": "outros",
+            "asin": "B000TEST002",
+            "precoCusto": 43.99,
+            "precoVenda": 118.3
+        },
+        "rastreio": {
+            "codigo": "BR1234567890003",
+            "transportadora": "transporte_ficticio",
+            "status": "entregue",
+            "dataEnvio": "2026-05-12",
+            "dataEntrega": "2026-05-17"
+        },
+        "pagamento": {
+            "metodo": "cartao",
+            "status": "pago"
+        },
+        "links": {
+            "produto": "https://example.com/produto/exemplo-c",
+            "rastreio": null,
+            "maps": "https://www.google.com/maps/search/?api=1&query=Rua+Fictícia+3,+300,+Cidade+Exemplo+SP"
+        },
+        "observacoes": "",
+        "id": 3,
+        "dataCadastro": "2026-05-12"
+    }
+]

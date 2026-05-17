@@ -1,0 +1,195 @@
+/* AmazonGest Pro - Tema Purple Midnight */
+.theme-purple {
+    /* === BACKGROUND === */
+    --bg-primary: #0f0a1f;
+    --bg-secondary: #1a1530;
+    --bg-tertiary: #251f40;
+    --bg-card: #1a1530;
+    --bg-card-hover: #251f40;
+    --bg-modal: rgba(15, 10, 31, 0.9);
+
+    /* === TEXT COLORS === */
+    --text-primary: #ffffff;
+    --text-secondary: rgba(255, 255, 255, 0.7);
+    --text-tertiary: rgba(255, 255, 255, 0.5);
+    --text-inverse: #0f0a1f;
+    --link-color: #a855f7;
+
+    /* === BORDERS === */
+    --border-color: rgba(168, 85, 247, 0.2);
+    --border-light: rgba(168, 85, 247, 0.1);
+    --border-accent: rgba(168, 85, 247, 0.5);
+
+    /* === SHADOWS === */
+    --shadow-xs: 0 1px 2px rgba(168, 85, 247, 0.2);
+    --shadow-sm: 0 2px 8px rgba(168, 85, 247, 0.2);
+    --shadow-md: 0 4px 16px rgba(168, 85, 247, 0.3);
+    --shadow-lg: 0 8px 32px rgba(168, 85, 247, 0.4);
+    --shadow-xl: 0 16px 64px rgba(168, 85, 247, 0.5);
+    --shadow-highlight: 0 0 32px rgba(168, 85, 247, 0.3);
+    --shadow-accent: 0 0 24px rgba(236, 72, 153, 0.3);
+
+    /* === ACCENTS & NEON PURPLE === */
+    --accent-primary: #a855f7;
+    --accent-secondary: #ec4899;
+    --accent-tertiary: #8b5cf6;
+    --neon-glow: 0 0 20px #a855f7;
+    --neon-shadow: 0 0 20px rgba(168, 85, 247, 0.5);
+
+    /* === SPECIAL EFFECTS === */
+    --glass-bg: rgba(168, 85, 247, 0.05);
+    --glass-border: rgba(168, 85, 247, 0.1);
+    --glass-blur: blur(10px);
+
+    /* === GRADIENTES PURPLE === */
+    --gradient-primary: linear-gradient(135deg, #a855f7 0%, #ec4899 100%);
+    --gradient-accent: linear-gradient(135deg, #8b5cf6 0%, #6366f1 100%);
+    --gradient-success: linear-gradient(135deg, #10b981 0%, #14b8a6 100%);
+    --gradient-warning: linear-gradient(135deg, #f59e0b 0%, #ea580c 100%);
+    --gradient-danger: linear-gradient(135deg, #ef4444 0%, #e11d48 100%);
+}
+
+.theme-purple body {
+    background: var(--bg-primary);
+    color: var(--text-primary);
+}
+
+.theme-purple .app-container {
+    background: linear-gradient(180deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
+}
+
+/* === COMPONENTES ESPECÍFICOS === */
+.theme-purple .stats-card {
+    background: var(--glass-bg);
+    backdrop-filter: var(--glass-blur);
+    border: 1px solid var(--glass-border);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.theme-purple .stats-card:hover {
+    background: var(--bg-card-hover);
+    border-color: var(--border-accent);
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-xl), var(--shadow-highlight);
+}
+
+.theme-purple .btn-3d {
+    background: var(--gradient-primary);
+    box-shadow:
+        0 4px 16px rgba(168, 85, 247, 0.3),
+        inset 0 0 0 1px rgba(255, 255, 255, 0.1);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.theme-purple .btn-3d:hover {
+    transform: translateY(-2px);
+    box-shadow:
+        0 6px 24px rgba(168, 85, 247, 0.5),
+        inset 0 0 0 1px rgba(255, 255, 255, 0.2);
+}
+
+.theme-purple .btn-3d:active {
+    transform: translateY(0);
+    box-shadow:
+        0 2px 8px rgba(168, 85, 247, 0.4),
+        inset 0 0 0 1px rgba(0, 0, 0, 0.2);
+}
+
+.theme-purple .neon-border {
+    position: relative;
+    background: var(--glass-bg);
+    backdrop-filter: var(--glass-blur);
+    border: 1px solid var(--border-accent);
+    overflow: hidden;
+}
+
+.theme-purple .neon-border::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: var(--gradient-primary);
+    z-index: -1;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.theme-purple .neon-border:hover::before {
+    opacity: 1;
+}
+
+.theme-purple .text-gradient {
+    background: var(--gradient-primary);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.theme-purple .table-hover tbody tr:hover {
+    background: var(--glass-bg);
+    transform: scale(1.01);
+}
+
+.theme-purple .sidebar {
+    background: rgba(15, 10, 31, 0.9);
+    backdrop-filter: var(--glass-blur);
+    border-right: 1px solid var(--border-color);
+}
+
+.theme-purple .nav-item.active {
+    background: rgba(168, 85, 247, 0.1);
+    border-left: 3px solid var(--accent-primary);
+}
+
+.theme-purple .modal-content {
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    box-shadow: var(--shadow-xl);
+}
+
+.theme-purple .form-control {
+    background: var(--glass-bg);
+    border-color: var(--border-color);
+    color: var(--text-primary);
+}
+
+.theme-purple .form-control:focus {
+    background: var(--bg-tertiary);
+    border-color: var(--accent-primary);
+    box-shadow: 0 0 0 3px rgba(168, 85, 247, 0.1);
+}
+
+.theme-purple .card-header {
+    background: var(--glass-bg);
+    border-bottom: 1px solid var(--border-light);
+}
+
+/* === ANIMAÇÕES PURPLE SPECIFIC === */
+@keyframes neon-pulse-purple {
+    0% { box-shadow: 0 0 10px var(--accent-primary); }
+    50% { box-shadow: 0 0 20px var(--accent-primary), 0 0 30px var(--accent-secondary); }
+    100% { box-shadow: 0 0 10px var(--accent-primary); }
+}
+
+.theme-purple .neon-active {
+    animation: neon-pulse-purple 2s infinite;
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+.theme-purple .float {
+    animation: float 3s ease-in-out infinite;
+}
+
+/* === EFEITO ESPECIAL DE PARTÍCULAS === */
+.theme-purple {
+    background-image:
+        radial-gradient(circle at 20% 80%, rgba(168, 85, 247, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(236, 72, 153, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 40% 40%, rgba(139, 92, 246, 0.05) 0%, transparent 50%);
+}

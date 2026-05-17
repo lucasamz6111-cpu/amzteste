@@ -1,0 +1,153 @@
+[2026-01-25 23:25:32] Erro ao decodificar JSON do arquivo C:\xamppp\htdocs\amazongest/data/clientes.json: Syntax error
+[2026-01-25 23:25:32] Erro ao decodificar JSON do arquivo C:\xamppp\htdocs\amazongest/data/clientes.json: Syntax error
+[2026-01-25 23:25:32] Erro ao decodificar JSON do arquivo C:\xamppp\htdocs\amazongest/data/clientes.json: Syntax error
+[2026-01-26 16:13:00] [INFO] [::1] Dados salvos em C:\xamppp\htdocs\amazongest/data/config.json
+[2026-01-26 16:13:00] [INFO] [::1] Configurações atualizadas
+[2026-01-26 16:13:16] [INFO] [::1] Dados salvos em C:\xamppp\htdocs\amazongest/data/config.json
+[2026-01-26 16:13:16] [INFO] [::1] Configurações atualizadas
+[2026-01-26 16:32:12] [INFO] [::1] Dados salvos em C:\xamppp\htdocs\amazongest/data/config.json
+[2026-01-26 16:32:12] [INFO] [::1] Configurações atualizadas
+[2026-01-26 16:32:30] [INFO] [::1] Dados salvos em C:\xamppp\htdocs\amazongest/data/produtos.json
+[2026-01-26 16:32:30] [INFO] [::1] Produto 1 salvo: Echo Dot (4ª Geração)
+[2026-01-26 16:32:30] [INFO] [::1] Produto 1 atualizado: Echo Dot (4ª Geração)
+[2026-01-26 16:37:30] [INFO] [::1] Dados salvos em C:\xamppp\htdocs\amazongest/data/config.json
+[2026-01-26 16:37:30] [INFO] [::1] Configurações atualizadas
+[2026-01-26 16:37:53] [INFO] [::1] Dados salvos em C:\xamppp\htdocs\amazongest/data/produtos.json
+[2026-01-26 16:37:53] [INFO] [::1] Produto 1 salvo: Echo Dot (4ª Geração)
+[2026-01-26 16:37:53] [INFO] [::1] Produto 1 atualizado: Echo Dot (4ª Geração)
+[2026-01-26 16:55:06] [INFO] [::1] Dados salvos em C:\xamppp\htdocs\amazongest/data/config.json
+[2026-01-26 16:55:06] [INFO] [::1] Configurações atualizadas
+[2026-01-26 20:28:09] [INFO] [::1] Dados salvos em C:\xamppp\htdocs\amazongest/data/config.json
+[2026-01-26 20:28:09] [INFO] [::1] Configurações atualizadas
+[2026-01-28 02:05:47] [INFO] [::1] Dados salvos em C:\xamppp\htdocs\amazongest/data/config.json
+[2026-01-28 02:05:47] [INFO] [::1] Configurações atualizadas
+[2026-01-28 02:10:53] [INFO] [::1] Dados salvos em C:\xamppp\htdocs\amazongest/data/config.json
+[2026-01-28 02:10:53] [INFO] [::1] Configurações atualizadas
+[2026-01-28 02:11:04] [INFO] [::1] Dados salvos em C:\xamppp\htdocs\amazongest/data/config.json
+[2026-01-28 02:11:04] [INFO] [::1] Configurações atualizadas
+[2026-04-06 19:39:39] Produto #28 criado via API: teste
+[2026-04-06 19:39:53] Produto #28 excluido via API
+[2026-04-06 19:44:22] Produto #28 criado via API: teste
+[2026-04-06 19:45:20] Pedido #5 criado via API
+[2026-04-06 19:47:50] Produto #29 criado via API: Teste Manual
+[2026-04-06 19:52:29] Produto #29 excluido via API
+[2026-04-06 19:53:50] Produto #29 criado via API: Produto Teste
+[2026-04-06 20:00:25] Pedido #5 excluido via API
+[2026-04-06 20:00:33] Produto #23 excluido via API
+[2026-04-06 20:00:43] Produto #29 excluido via API
+[2026-04-16 01:31:31] Produto #28 excluido via API
+[2026-04-16 01:58:35] Produto #28 criado via API: teste
+[2026-04-16 01:58:45] Produto #28 excluido via API
+[2026-04-23 23:25:58] Produto #28 criado via API: teste
+[2026-04-23 23:26:14] Produto #28 excluido via API
+[2026-05-04 18:12:11] Pedido #5 excluido via API
+[2026-05-04 18:26:01] Produto #26 excluido via API
+[2026-05-04 23:39:45] Produto #1 salvo via API: teste
+[2026-05-05 00:13:37] Produto #2 salvo via API: teste
+[2026-05-05 00:13:50] Produto #1 excluido via API
+[2026-05-05 00:13:52] Produto #2 excluido via API
+[2026-05-05 02:34:42] Pedido #1 salvo via API
+[2026-05-05 02:35:22] Pedido #2 salvo via API
+[2026-05-05 02:41:08] Pedido #2 excluido via API
+[2026-05-05 02:42:28] Pedido #1 excluido via API
+[2026-05-05 02:43:20] Produto #1 salvo via API: Luva Escova Tira Pelos Cães e Gatos Nano Magnética - Azul - Borracha
+[2026-05-05 02:44:03] Produto #1 excluido via API
+[2026-05-05 02:57:51] Pedido #1 salvo via API
+[2026-05-05 02:57:58] Pedido #1 excluido via API
+[2026-05-05 02:58:25] Produto #1 salvo via API: Luva Escova Tira Pelos Cães e Gatos Nano Magnética - Azul - Borracha
+[2026-05-05 02:58:32] Produto #1 excluido via API
+[2026-05-05 02:59:10] Pedido #1 salvo via API
+[2026-05-05 02:59:10] Pedido #1 salvo via API
+[2026-05-05 02:59:24] Pedido #1 excluido via API
+[2026-05-05 02:59:46] Pedido #1 salvo via API
+[2026-05-05 02:59:49] Pedido #1 excluido via API
+[2026-05-05 03:00:02] Produto #1 salvo via API: Fone Bluetooth Premium
+[2026-05-05 03:00:02] Produto #1 salvo via API: Echo Dot (4ª Geração)
+[2026-05-05 03:00:02] Produto #1 salvo via API: Echo Dot (4ª Geração)
+[2026-05-05 03:00:06] Produto #1 excluido via API
+[2026-05-05 03:00:24] Produto #1 salvo via API: teste3
+[2026-05-05 03:00:36] Produto #2 salvo via API: rewrew
+[2026-05-05 03:00:39] Produto #1 excluido via API
+[2026-05-05 03:00:43] Produto #2 excluido via API
+[2026-05-05 03:02:01] Pedido #1 salvo via API
+[2026-05-05 03:02:56] Pedido #1 excluido via API
+[2026-05-05 03:06:43] Pedido #1 salvo via API
+[2026-05-05 03:06:46] Pedido #1 excluido via API
+[2026-05-05 03:07:01] Produto #1 salvo via API: Luva Escova Tira Pelos Cães e Gatos Nano Magnética - Azul - Borracha
+[2026-05-05 03:07:04] Produto #1 excluido via API
+[2026-05-05 03:09:34] Pedido #1 salvo via API
+[2026-05-05 03:09:38] Pedido #1 excluido via API
+[2026-05-05 03:09:58] Produto #1 salvo via API: Luva Escova Tira Pelos Cães e Gatos Nano Magnética - Azul - Borracha
+[2026-05-05 03:10:03] Produto #1 excluido via API
+[2026-05-07 04:36:17] Pedido #1 salvo via API
+[2026-05-07 04:59:45] Pedido #1 excluido via API
+[2026-05-11 01:56:39] Pedido #1 salvo via API
+[2026-05-11 01:56:54] Pedido #1 excluido via API
+[2026-05-11 01:57:05] Pedido #1 salvo via API
+[2026-05-11 01:57:27] Pedido #1 excluido via API
+[2026-05-11 01:57:55] Pedido #1 salvo via API
+[2026-05-11 01:57:55] Pedido #1 salvo via API
+[2026-05-11 01:58:28] Pedido #1 excluido via API
+[2026-05-11 02:10:39] Pedido #1 salvo via API
+[2026-05-11 02:10:48] Pedido #1 salvo via API
+[2026-05-11 02:20:03] Pedido #1 salvo via API
+[2026-05-11 02:20:41] Pedido #1 salvo via API
+[2026-05-11 02:20:52] Pedido #1 excluido via API
+[2026-05-11 02:32:06] Produto #1 salvo via API: 
+[2026-05-11 02:32:16] Produto #1 excluido via API
+[2026-05-11 02:32:24] Pedido #1 salvo via API
+[2026-05-11 02:35:42] Produto #1 salvo via API: Fone Bluetooth Premium
+[2026-05-11 02:35:42] Produto #1 salvo via API: Echo Dot (4ª Geração)
+[2026-05-11 02:35:42] Produto #1 salvo via API: Echo Dot (4ª Geração)
+[2026-05-11 03:41:46] Produto #1 salvo via API: teste
+[2026-05-11 03:45:36] Produto #1 excluido via API
+[2026-05-11 03:46:10] Produto #1 salvo via API: teste
+[2026-05-11 15:04:45] Pedido #1 excluido via API
+[2026-05-11 15:04:51] Produto #1 excluido via API
+[2026-05-11 15:46:08] Produto #1 salvo via API: Luvas Térmicas para Moto e Bike, Impermeável, Touch Screen, Antiderrapante, Preta
+[2026-05-11 16:00:58] Pedido #1 salvo via API
+[2026-05-11 16:24:22] Pedido #2 salvo via API
+[2026-05-11 16:24:22] Pedido #2 salvo via API
+[2026-05-11 16:45:03] Pedido #3 salvo via API
+[2026-05-11 16:45:30] Pedido #4 salvo via API
+[2026-05-11 16:45:46] Pedido #1 excluido via API
+[2026-05-11 16:46:00] Pedido #4 excluido via API
+[2026-05-11 17:05:14] Pedido #4 salvo via API
+[2026-05-11 17:07:42] Pedido #4 excluido via API
+[2026-05-12 01:09:29] Pedido #3 salvo via API
+[2026-05-12 01:41:32] Produto #2 salvo via API: Chaveiro Identificador De Voltagem 110v E 220v Tomada Casa
+[2026-05-12 01:51:17] Pedido #4 salvo via API
+[2026-05-12 03:20:03] Pedido #5 salvo via API
+[2026-05-12 03:20:43] Pedido #5 excluido via API
+[2026-05-12 14:45:51] Pedido #5 salvo via API
+[2026-05-12 14:49:43] Pedido #6 salvo via API
+[2026-05-12 15:15:28] Pedido #3 excluido via API
+[2026-05-12 15:15:38] Pedido #2 excluido via API
+[2026-05-12 15:20:29] Pedido #4 excluido via API
+[2026-05-12 15:24:32] Pedido #1 salvo via API
+[2026-05-12 15:24:49] Pedido #1 excluido via API
+[2026-05-12 15:29:30] Pedido #1 salvo via API
+[2026-05-12 15:30:26] Pedido #1 excluido via API
+[2026-05-12 15:33:35] Pedido #1 salvo via API
+[2026-05-12 15:33:39] Pedido #1 excluido via API
+[2026-05-12 15:34:30] Pedido #1 salvo via API
+[2026-05-12 15:58:22] Pedido #1 excluido via API
+[2026-05-12 16:33:23] Pedido #1 salvo via API
+[2026-05-12 16:37:05] Pedido #2 salvo via API
+[2026-05-12 16:39:06] Pedido #2 excluido via API
+[2026-05-12 16:41:40] Pedido #2 salvo via API
+[2026-05-12 18:13:21] Pedido #3 salvo via API
+[2026-05-13 03:32:44] Pedido #4 salvo via API
+[2026-05-13 03:33:33] Pedido #4 excluido via API
+[2026-05-13 04:03:01] Pedido #4 salvo via API
+[2026-05-13 04:05:02] Pedido #4 excluido via API
+[2026-05-13 23:56:23] Produto #3 salvo via API: Kit 6/10/12/24 Caixas Organizadoras de Sapatos Empilháveis com Porta Frontal Flip - Preto/Branco
+[2026-05-14 02:20:01] Produto #4 salvo via API: 55x75cm tapete higiênico eva coletor de areia para gato lavável dupla camada
+[2026-05-14 03:03:24] Produto #5 salvo via API: NiDawi Pet Desmate Pente de cuidados com anéis para escova de pelos para cães e gatos longos (grande, azul)
+[2026-05-14 03:20:15] Produto #6 salvo via API: Filtros de fonte de água para gatos Decdeal, 4 pcs, 1
+[2026-05-15 08:29:45] Pedido #4 salvo via API
+[2026-05-15 08:38:06] Pedido #4 excluido via API
+[2026-05-15 08:39:00] Pedido #4 salvo via API
+[2026-05-15 08:43:46] Pedido #4 excluido via API
+[2026-05-15 08:44:43] Pedido #4 salvo via API
+[2026-05-15 08:45:20] Pedido #4 excluido via API

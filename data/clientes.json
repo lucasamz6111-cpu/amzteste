@@ -1,0 +1,53 @@
+[
+    {
+        "id": 1,
+        "nome": "Cliente Exemplo 1",
+        "cpf": "00000000191",
+        "telefone": "11999990001",
+        "amazonId": "000-0000000-0000001",
+        "endereco": {
+            "rua": "Rua Fictícia 1",
+            "numero": "100",
+            "complemento": "Ap 101",
+            "bairro": "Bairro Teste",
+            "cidade": "Cidade Exemplo",
+            "estado": "SP",
+            "cep": "00000-001"
+        },
+        "dataCadastro": "2026-05-12"
+    },
+    {
+        "id": 2,
+        "nome": "Cliente Exemplo 2",
+        "cpf": "00000000272",
+        "telefone": "11999990002",
+        "amazonId": "000-0000000-0000002",
+        "endereco": {
+            "rua": "Rua Fictícia 2",
+            "numero": "200",
+            "complemento": "Casa 2",
+            "bairro": "Bairro Demo",
+            "cidade": "Cidade Exemplo",
+            "estado": "SP",
+            "cep": "00000-002"
+        },
+        "dataCadastro": "2026-05-12"
+    },
+    {
+        "id": 3,
+        "nome": "Cliente Exemplo 3",
+        "cpf": "00000000353",
+        "telefone": "11999990003",
+        "amazonId": "000-0000000-0000003",
+        "endereco": {
+            "rua": "Rua Fictícia 3",
+            "numero": "300",
+            "complemento": "Loja 3",
+            "bairro": "Bairro Demo",
+            "cidade": "Cidade Exemplo",
+            "estado": "SP",
+            "cep": "00000-003"
+        },
+        "dataCadastro": "2026-05-12"
+    }
+]

@@ -1,0 +1,80 @@
+[
+    {
+        "nome": "Produto Exemplo A",
+        "categoria": "outros",
+        "asin": "",
+        "plataforma": "shopee",
+        "precoCusto": 18.90,
+        "precoVenda": 25.80,
+        "estoque": 45,
+        "descricao": "Produto de demonstração A",
+        "link": "https://example.com/produto/exemplo-a",
+        "dataCadastro": "2026-05-11",
+        "id": 1
+    },
+    {
+        "nome": "Produto Exemplo B",
+        "categoria": "outros",
+        "asin": "B000TEST001",
+        "plataforma": "shopee",
+        "precoCusto": 14.59,
+        "precoVenda": 22.47,
+        "estoque": 39,
+        "descricao": "Produto de demonstração B",
+        "link": "https://example.com/produto/exemplo-b",
+        "dataCadastro": "2026-05-12",
+        "id": 2
+    },
+    {
+        "nome": "Produto Exemplo C",
+        "categoria": "outros",
+        "asin": "B000TEST002",
+        "plataforma": "shopee",
+        "precoCusto": 43.99,
+        "precoVenda": 118.30,
+        "estoque": 99,
+        "descricao": "Produto de demonstração C",
+        "link": "https://example.com/produto/exemplo-c",
+        "dataCadastro": "2026-05-13",
+        "id": 3
+    },
+    {
+        "nome": "Produto Exemplo D",
+        "categoria": "pet",
+        "asin": "B000TEST003",
+        "plataforma": "shopee",
+        "precoCusto": 31.59,
+        "precoVenda": 59.80,
+        "estoque": 80,
+        "descricao": "Produto de demonstração D",
+        "link": "https://example.com/produto/exemplo-d",
+        "dataCadastro": "2026-05-14",
+        "id": 4
+    },
+    {
+        "nome": "Produto Exemplo E",
+        "categoria": "pet",
+        "asin": "B000TEST004",
+        "plataforma": "shopee",
+        "precoCusto": 16.50,
+        "precoVenda": 48.60,
+        "estoque": 100,
+        "descricao": "Produto de demonstração E",
+        "link": "https://example.com/produto/exemplo-e",
+        "dataCadastro": "2026-05-14",
+        "id": 5
+    },
+    {
+        "nome": "Produto Exemplo F",
+        "categoria": "pet",
+        "asin": "B000TEST005",
+        "plataforma": "shopee",
+        "precoCusto": 22.00,
+        "precoVenda": 76.50,
+        "estoque": 97,
+        "descricao": "Produto de demonstração F",
+        "link": "https://example.com/produto/exemplo-f",
+        "dataCadastro": "2026-05-14",
+        "id": 6
+    }
+]

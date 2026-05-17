@@ -1,0 +1,19 @@
+{
+  "pollinationsAI": {
+    "chave": "sk_k0MqrwOilO90knqfaTQtzb1760DnG73o",
+    "ativa": true,
+    "dataCriacao": "2024-03-13",
+    "ultimoUso": "2024-03-13T10:00:00"
+  },
+  "amazon": {
+    "chave": "",
+    "ativa": false,
+    "dataCriacao": ""
+  },
+  "shopee": {
+    "chave": "",
+    "ativa": false,
+    "dataCriacao": ""
+  },
+  "nota": "⚠️ ARQUIVO SENSÍVEL - Não compartilhe com ninguém! Adicione este arquivo ao .gitignore"
+}

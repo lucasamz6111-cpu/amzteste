@@ -1,0 +1,187 @@
+{
+    "sistema": {
+        "versao": 4,
+        "nome": "Market Manager Pro",
+        "ultimoBackup": "2026-03-13 00:00:00"
+    },
+    "configuracoes": {
+        "entregadorPadrao": "shopee",
+        "tema": "escuro",
+        "notificacoes": true,
+        "autoBackup": true,
+        "diasBackup": 7
+    },
+    "seguranca": {
+        "ocultarDadosPorPadrao": false,
+        "versionarAlteracoes": true,
+        "protegerConfiguracao": true
+    },
+    "categoriasAmazon": {
+        "eletronicos": {
+            "nome": "Eletrônicos",
+            "taxa": 12
+        },
+        "celulares": {
+            "nome": "Celulares",
+            "taxa": 15
+        },
+        "computadores": {
+            "nome": "Computadores",
+            "taxa": 12
+        },
+        "tablets": {
+            "nome": "Tablets",
+            "taxa": 12
+        },
+        "tvs": {
+            "nome": "TVs",
+            "taxa": 10
+        },
+        "audio": {
+            "nome": "Áudio",
+            "taxa": 15
+        },
+        "cameras": {
+            "nome": "Câmeras",
+            "taxa": 12
+        },
+        "games": {
+            "nome": "Games",
+            "taxa": 15
+        },
+        "livros": {
+            "nome": "Livros",
+            "taxa": 12
+        },
+        "dvds": {
+            "nome": "DVDs",
+            "taxa": 15
+        },
+        "musica": {
+            "nome": "Música Instrumentos",
+            "taxa": 15
+        },
+        "brinquedos": {
+            "nome": "Brinquedos",
+            "taxa": 15
+        },
+        "bebes": {
+            "nome": "Bebês",
+            "taxa": 12
+        },
+        "moda": {
+            "nome": "Moda",
+            "taxa": 15
+        },
+        "calcados": {
+            "nome": "Calçados",
+            "taxa": 15
+        },
+        "relogios": {
+            "nome": "Relógios",
+            "taxa": 15
+        },
+        "joias": {
+            "nome": "Joias",
+            "taxa": 20
+        },
+        "beleza": {
+            "nome": "Beleza",
+            "taxa": 15
+        },
+        "perfumes": {
+            "nome": "Perfumes",
+            "taxa": 15
+        },
+        "saude": {
+            "nome": "Saúde",
+            "taxa": 12
+        },
+        "alimentos": {
+            "nome": "Alimentos",
+            "taxa": 12
+        },
+        "bebidas": {
+            "nome": "Bebidas",
+            "taxa": 10
+        },
+        "casa": {
+            "nome": "Casa",
+            "taxa": 12
+        },
+        "moveis": {
+            "nome": "Móveis",
+            "taxa": 15
+        },
+        "ferramentas": {
+            "nome": "Ferramentas",
+            "taxa": 15
+        },
+        "pet": {
+            "nome": "Produtos para Animais",
+            "taxa": 12
+        },
+        "automotivo": {
+            "nome": "Automotivo",
+            "taxa": 15
+        },
+        "esportes": {
+            "nome": "Esportes",
+            "taxa": 15
+        },
+        "instrumentos": {
+            "nome": "Instrumentos",
+            "taxa": 15
+        },
+        "papelaria": {
+            "nome": "Papelaria",
+            "taxa": 12
+        },
+        "festas": {
+            "nome": "Festas",
+            "taxa": 12
+        },
+        "malas": {
+            "nome": "Malas",
+            "taxa": 15
+        },
+        "industrial": {
+            "nome": "Industrial",
+            "taxa": 15
+        },
+        "outros": {
+            "nome": "Outros",
+            "taxa": 15
+        }
+    },
+    "taxasAdicionais": {
+        "frete": 0,
+        "embalagem": 0
+    },
+    "notificacoes": {
+        "alertaEstoqueBaixo": true,
+        "alertaPedidosAtrasados": true,
+        "alertaNovoCliente": true,
+        "alertaLucroNegativo": true
+    },
+    "nomeEmpresa": "Market Manager Pro",
+    "taxaPadrao": 15,
+    "tema": "sunset",
+    "viewPedidos": "lista",
+    "viewProdutos": "lista",
+    "corAcento": "#06b6d4",
+    "moeda": "BRL",
+    "entregadorPadrao": "shopee",
+    "estoqueMinAlerta": 5,
+    "contasShopee": [],
+    "amazon": {
+        "aws_access_key_id": "",
+        "aws_secret_access_key": "",
+        "lwa_client_id": "",
+        "lwa_client_secret": "",
+        "lwa_refresh_token": "",
+        "marketplace": "US",
+        "ativa": false,
+        "dataCriacao": "2026-05-05"
+    }
+}
