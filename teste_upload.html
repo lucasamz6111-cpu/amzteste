@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Teste Upload</title>
+</head>
+<body>
+    <h1>Teste de Upload de Arquivo</h1>
+    <form id="uploadForm">
+        <input type="text" id="to" placeholder="Número (5511999999999)" required><br><br>
+        <input type="text" id="message" placeholder="Mensagem (opcional)"><br><br>
+        <input type="file" id="media" accept="image/*"><br><br>
+        <button type="submit">Enviar</button>
+    </form>
+
+    <script>
+        document.getElementById('uploadForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const to = document.getElementById('to').value;
+            const message = document.getElementById('message').value;
+            const media = document.getElementById('media').files[0];
+
+            const formData = new FormData();
+            formData.append('to', to);
+            if (message) formData.append('message', message);
+            if (media) formData.append('media', media);
+
+            console.log('Enviando:', { to, message: message || 'vazio', media: media ? media.name : 'nenhum' });
+
+            try {
+                const response = await fetch('http://localhost:3001/send', {
+                    method: 'POST',
+                    body: formData
+                });
+
+                const result = await response.json();
+                console.log('Resultado:', result);
+                alert('Resultado: ' + JSON.stringify(result));
+            } catch (error) {
+                console.error('Erro:', error);
+                alert('Erro: ' + error.message);
+            }
+        });
+    </script>
+</body>
+</html>

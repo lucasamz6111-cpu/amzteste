@@ -1,0 +1,68 @@
+[
+    {
+        "id": "1",
+        "titulo": "🚀 Nova Versão do Sistema Disponível!",
+        "conteudo": "Lançamos a versão 2.0 do AmazonGest com melhorias significativas em performance e novas funcionalidades. Atualize agora para aproveitar todas as novidades!",
+        "tipo": "atualizacao",
+        "data": "2026-05-11",
+        "prioridade": "alta",
+        "icone": "fas fa-rocket",
+        "cor": "#2563eb",
+        "ativo": true
+    },
+    {
+        "id": "2",
+        "titulo": "📦 Correção no Cálculo de Lucro Líquido",
+        "conteudo": "Corrigimos um bug no cálculo do lucro líquido dos produtos. Agora o sistema faz o matching correto entre pedidos e produtos cadastrados, considerando ASIN e nome do produto.",
+        "tipo": "correcao",
+        "data": "2026-05-11",
+        "prioridade": "media",
+        "icone": "fas fa-bug",
+        "cor": "#059669",
+        "ativo": true
+    },
+    {
+        "id": "3",
+        "titulo": "🎨 Novo Design Premium Implementado",
+        "conteudo": "Implementamos um novo design premium com interface mais moderna e intuitiva. O sistema agora conta com temas dark/light e melhor responsividade.",
+        "tipo": "melhoria",
+        "data": "2026-05-10",
+        "prioridade": "media",
+        "icone": "fas fa-palette",
+        "cor": "#7c3aed",
+        "ativo": true
+    },
+    {
+        "id": "4",
+        "titulo": "⚠️ Manutenção Programada",
+        "conteudo": "Teremos uma manutenção programada no sistema entre 22h e 24h do dia 15/05. Durante este período, o sistema ficará indisponível temporariamente.",
+        "tipo": "manutencao",
+        "data": "2026-05-12",
+        "prioridade": "alta",
+        "icone": "fas fa-tools",
+        "cor": "#dc2626",
+        "ativo": true
+    },
+    {
+        "id": "5",
+        "titulo": "💡 Nova Funcionalidade: Análise com IA",
+        "conteudo": "Adicionamos uma nova funcionalidade de análise de produtos com IA integrada. Agora você pode obter insights inteligentes sobre seus produtos diretamente no sistema.",
+        "tipo": "novidade",
+        "data": "2026-05-09",
+        "prioridade": "baixa",
+        "icone": "fas fa-brain",
+        "cor": "#0891b2",
+        "ativo": true
+    },
+    {
+        "id": "6",
+        "titulo": "📊 Dashboard Melhorado",
+        "conteudo": "O dashboard principal foi completamente redesenhado com novos gráficos e métricas mais detalhadas sobre vendas, lucros e performance dos produtos.",
+        "tipo": "melhoria",
+        "data": "2026-05-08",
+        "prioridade": "baixa",
+        "icone": "fas fa-chart-line",
+        "cor": "#16a34a",
+        "ativo": true
+    }
+]

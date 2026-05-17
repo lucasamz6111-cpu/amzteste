@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Amazon Gest Pro - Bem-vindo ao v5.0 Premium</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #0a0e27 0%, #151d3a 100%);
+            color: #ffffff;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1000px;
+            width: 100%;
+        }
+
+        .hero {
+            text-align: center;
+            margin-bottom: 3rem;
+            animation: slideDown 0.8s ease;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .logo {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+        }
+
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(135deg, #00d4ff 0%, #ff006e 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: 800;
+        }
+
+        .subtitle {
+            font-size: 1.3rem;
+            color: #8891a0;
+            margin-bottom: 1rem;
+        }
+
+        .version {
+            display: inline-block;
+            background: linear-gradient(135deg, #00d4ff 0%, #0099ff 100%);
+            color: #0a0e27;
+            padding: 0.75rem 1.5rem;
+            border-radius: 50px;
+            font-weight: 700;
+            margin-bottom: 2rem;
+            box-shadow: 0 8px 24px rgba(0, 212, 255, 0.3);
+        }
+
+        .description {
+            font-size: 1.1rem;
+            color: #d0d5dd;
+            line-height: 1.8;
+            margin-bottom: 2rem;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .options {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .option {
+            background: linear-gradient(135deg, #1a2347 0%, #151d3a 100%);
+            border: 2px solid rgba(0, 212, 255, 0.2);
+            border-radius: 12px;
+            padding: 2rem;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            text-decoration: none;
+            color: inherit;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .option:hover {
+            border-color: #00d4ff;
+            box-shadow: 0 0 40px rgba(0, 212, 255, 0.3);
+            transform: translateY(-8px);
+        }
+
+        .option-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .option-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: #00d4ff;
+        }
+
+        .option-desc {
+            color: #8891a0;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        .cta-btn {
+            display: inline-block;
+            background: linear-gradient(135deg, #00d4ff 0%, #0099ff 100%);
+            color: #0a0e27;
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            font-weight: 700;
+            font-size: 1.05rem;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 24px rgba(0, 212, 255, 0.3);
+            cursor: pointer;
+            border: none;
+            margin-top: auto;
+        }
+
+        .cta-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 32px rgba(0, 212, 255, 0.4);
+        }
+
+        .main-cta {
+            text-align: center;
+            margin-bottom: 3rem;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 1rem;
+            margin: 2rem 0;
+            background: rgba(0, 212, 255, 0.05);
+            padding: 2rem;
+            border-radius: 12px;
+            border: 1px solid rgba(0, 212, 255, 0.2);
+        }
+
+        .feature {
+            text-align: center;
+        }
+
+        .feature-icon {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .feature-text {
+            font-size: 0.9rem;
+            color: #d0d5dd;
+        }
+
+        footer {
+            text-align: center;
+            color: #5b6370;
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .badges {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin: 1rem 0;
+        }
+
+        .badge {
+            background: rgba(0, 255, 136, 0.1);
+            color: #00ff88;
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 700;
+        }
+
+        .divider {
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(0, 212, 255, 0.3), transparent);
+            margin: 2rem 0;
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+
+            .subtitle {
+                font-size: 1rem;
+            }
+
+            .logo {
+                font-size: 2.5rem;
+            }
+
+            .options {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- HERO -->
+        <div class="hero">
+            <div class="logo">🚀</div>
+            <h1>Amazon Gest Pro</h1>
+            <p class="subtitle">Sistema Profissional de Gestão de Vendas</p>
+            <div class="version">✨ Versão 5.0 Premium - Novo Design</div>
+            
+            <p class="description">
+                Bem-vindo ao novo Amazon Gest Pro com design premium, calculadora inteligente e zero mensagens de erro. 
+                Gerencie suas vendas com profissionalismo e elegância!
+            </p>
+
+            <div class="badges">
+                <span class="badge">✓ 100% Pronto</span>
+                <span class="badge">✓ Sem Erros</span>
+                <span class="badge">✓ Premium</span>
+                <span class="badge">✓ Responsivo</span>
+            </div>
+        </div>
+
+        <!-- RECURSOS PRINCIPAIS -->
+        <div class="features">
+            <div class="feature">
+                <div class="feature-icon">🎨</div>
+                <div class="feature-text">Design Premium</div>
+            </div>
+            <div class="feature">
+                <div class="feature-icon">📊</div>
+                <div class="feature-text">Dashboard Inteligente</div>
+            </div>
+            <div class="feature">
+                <div class="feature-icon">🧮</div>
+                <div class="feature-text">Calculadora Automática</div>
+            </div>
+            <div class="feature">
+                <div class="feature-icon">✨</div>
+                <div class="feature-text">Zero Erros</div>
+            </div>
+            <div class="feature">
+                <div class="feature-icon">💾</div>
+                <div class="feature-text">Dados Seguros</div>
+            </div>
+            <div class="feature">
+                <div class="feature-icon">📱</div>
+                <div class="feature-text">Responsivo</div>
+            </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <!-- CTA PRINCIPAL -->
+        <div class="main-cta">
+            <a href="index_new.php" class="cta-btn">
+                ✨ Abrir Amazon Gest Pro v5.0 Agora
+            </a>
+        </div>
+
+        <!-- OPÇÕES DE NAVEGAÇÃO -->
+        <div class="options">
+            <a href="index_new.php" class="option">
+                <div class="option-icon">🌟</div>
+                <div class="option-title">Novo Sistema</div>
+                <div class="option-desc">Abra a interface premium com design moderno</div>
+                <button class="cta-btn">Abrir</button>
+            </a>
+
+            <a href="novo_sistema.html" class="option">
+                <div class="option-icon">📖</div>
+                <div class="option-title">Instruções</div>
+                <div class="option-desc">Veja o guia completo de como usar</div>
+                <button class="cta-btn">Ler</button>
+            </a>
+
+            <a href="resumo_redesign.html" class="option">
+                <div class="option-icon">📊</div>
+                <div class="option-title">Resumo Visual</div>
+                <div class="option-desc">Veja comparação e funcionalidades</div>
+                <button class="cta-btn">Ver</button>
+            </a>
+
+            <a href="RESUMO_PT.md" class="option">
+                <div class="option-icon">📝</div>
+                <div class="option-title">Documentação</div>
+                <div class="option-desc">Leia a documentação técnica completa</div>
+                <button class="cta-btn">Ler</button>
+            </a>
+
+            <a href="index.php" class="option" style="opacity: 0.7;">
+                <div class="option-icon">🔄</div>
+                <div class="option-title">Sistema Original</div>
+                <div class="option-desc">Voltar para a versão anterior (v4.1)</div>
+                <button class="cta-btn">Acessar</button>
+            </a>
+
+            <a href="novo_sistema.html" class="option">
+                <div class="option-icon">💡</div>
+                <div class="option-title">Comece Agora</div>
+                <div class="option-desc">Guia rápido para primeiros passos</div>
+                <button class="cta-btn">Começar</button>
+            </a>
+        </div>
+
+        <div class="divider"></div>
+
+        <!-- DESTAQUES -->
+        <div style="background: rgba(0, 212, 255, 0.08); border: 1px solid rgba(0, 212, 255, 0.2); border-radius: 12px; padding: 2rem; text-align: center;">
+            <h2 style="color: #00d4ff; margin-bottom: 1rem;">🎯 Principais Mudanças</h2>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem;">
+                <div>
+                    <strong style="color: #00d4ff;">🎨 Design Premium</strong>
+                    <p style="color: #8891a0; font-size: 0.9rem; margin-top: 0.5rem;">Tema preto luxuoso com acentos modernos</p>
+                </div>
+                <div>
+                    <strong style="color: #00ff88;">✨ Zero Erros</strong>
+                    <p style="color: #8891a0; font-size: 0.9rem; margin-top: 0.5rem;">Removidas todas as mensagens de erro</p>
+                </div>
+                <div>
+                    <strong style="color: #ffaa00;">🧮 Calculadora</strong>
+                    <p style="color: #8891a0; font-size: 0.9rem; margin-top: 0.5rem;">Cálculos automáticos por categoria</p>
+                </div>
+                <div>
+                    <strong style="color: #ff006e;">📊 Dashboard</strong>
+                    <p style="color: #8891a0; font-size: 0.9rem; margin-top: 0.5rem;">KPIs e gráficos em tempo real</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- FOOTER -->
+        <footer>
+            <p>
+                <strong>Amazon Gest Pro v5.0</strong> | Desenvolvido com ❤️ para profissionais
+            </p>
+            <p style="margin-top: 0.5rem; font-size: 0.9rem;">
+                © 2026 | Sistema de Gestão Premium para Amazon e Marketplaces
+            </p>
+        </footer>
+    </div>
+</body>
+</html>

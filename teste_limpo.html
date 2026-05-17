@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teste Limpo</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .success {
+            color: #28a745;
+            background-color: #d4edda;
+            padding: 10px;
+            border-radius: 4px;
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Página de Teste Limpa</h1>
+        <div class="success">
+            ✓ Página carregada sem erros JavaScript
+        </div>
+        <p>Esta é uma página HTML limpa sem scripts externos.</p>
+        <p>Se você não vê erros no console F12 nesta página, o problema está nos scripts de terceiros do seu site principal.</p>
+
+        <h2>Verificações:</h2>
+        <ul>
+            <li>✓ HTML válido</li>
+            <li>✓ CSS funcionando</li>
+            <li>✓ Sem erros JavaScript</li>
+        </ul>
+
+        <div id="teste-js"></div>
+
+        <script>
+            // Teste simples de JavaScript
+            document.getElementById('teste-js').innerHTML = '<div class="success">✓ JavaScript funcionando corretamente!</div>';
+            console.log('Página de teste limpa carregada sem erros.');
+        </script>
+    </div>
+</body>
+</html>

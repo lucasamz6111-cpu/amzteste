@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editor de Avisos - AmazonGest</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        :root {
+            --primary: #2563eb;
+            --primary-dark: #1d4ed8;
+            --secondary: #10b981;
+            --danger: #ef4444;
+            --warning: #f59e0b;
+            --light: #f8fafc;
+            --dark: #1e293b;
+            --gray: #64748b;
+            --light-gray: #e2e8f0;
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            --radius: 10px;
+        }
+
+        body {
+            background-color: #f1f5f9;
+            color: var(--dark);
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            background: white;
+            box-shadow: var(--shadow);
+            padding: 15px 0;
+            margin-bottom: 30px;
+            border-radius: var(--radius);
+        }
+
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: var(--radius);
+            cursor: pointer;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s;
+        }
+
+        .btn-primary {
+            background-color: var(--primary);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background-color: var(--primary-dark);
+        }
+
+        .btn-success {
+            background-color: var(--secondary);
+            color: white;
+        }
+
+        .btn-success:hover {
+            background-color: #059669;
+        }
+
+        .avisos-container {
+            display: grid;
+            gap: 20px;
+        }
+
+        .aviso-card {
+            background: white;
+            border-radius: var(--radius);
+            padding: 25px;
+            box-shadow: var(--shadow);
+            border-left: 4px solid var(--primary);
+        }
+
+        .aviso-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 15px;
+        }
+
+        .aviso-titulo {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--dark);
+            margin-bottom: 5px;
+        }
+
+        .aviso-meta {
+            display: flex;
+            gap: 15px;
+            font-size: 0.9rem;
+            color: var(--gray);
+        }
+
+        .aviso-conteudo {
+            color: var(--dark);
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .aviso-acoes {
+            display: flex;
+            gap: 10px;
+        }
+
+        .btn-small {
+            padding: 6px 12px;
+            font-size: 0.8rem;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background: white;
+            border-radius: var(--radius);
+            width: 90%;
+            max-width: 600px;
+            padding: 30px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .modal-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--dark);
+        }
+
+        .close-modal {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--gray);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: var(--dark);
+        }
+
+        .form-input, .form-select, .form-textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid var(--light-gray);
+            border-radius: var(--radius);
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+
+        .form-input:focus, .form-select:focus, .form-textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+
+        .form-textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .form-actions {
+            display: flex;
+            justify-content: flex-end;
+            gap: 10px;
+            margin-top: 30px;
+        }
+
+        .status-badge {
+            padding: 4px 8px;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .status-ativo {
+            background-color: #dcfce7;
+            color: #166534;
+        }
+
+        .status-inativo {
+            background-color: #fee2e2;
+            color: #991b1b;
+        }
+
+        .tipo-atualizacao { border-left-color: #2563eb; }
+        .tipo-correcao { border-left-color: #059669; }
+        .tipo-melhoria { border-left-color: #7c3aed; }
+        .tipo-manutencao { border-left-color: #dc2626; }
+        .tipo-novidade { border-left-color: #0891b2; }
+
+        .prioridade-alta { background-color: #fef2f2; }
+        .prioridade-media { background-color: #fefce8; }
+        .prioridade-baixa { background-color: #f0fdf4; }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <div class="logo">
+                <i class="fas fa-bell"></i>
+                <span>Editor de Avisos - AmazonGest</span>
+            </div>
+            <div>
+                <button class="btn btn-success" id="novo-aviso-btn">
+                    <i class="fas fa-plus"></i> Novo Aviso
+                </button>
+                <a href="teste.html" class="btn btn-primary">
+                    <i class="fas fa-eye"></i> Ver Avisos
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="avisos-container" id="avisos-container">
+            <!-- Avisos serão carregados aqui -->
+        </div>
+    </div>
+
+    <!-- Modal para Criar/Editar Aviso -->
+    <div class="modal" id="avisoModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title" id="avisoModalTitle"><i class="fas fa-plus"></i> Novo Aviso</h2>
+                <button class="close-modal" id="closeAvisoModal">&times;</button>
+            </div>
+            <form id="avisoForm">
+                <div class="form-group">
+                    <label class="form-label" for="aviso-titulo">Título do Aviso</label>
+                    <input type="text" id="aviso-titulo" class="form-input" placeholder="Digite o título do aviso" required>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label" for="aviso-conteudo">Conteúdo do Aviso</label>
+                    <textarea id="aviso-conteudo" class="form-textarea" placeholder="Digite o conteúdo completo do aviso" required></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label" for="aviso-tipo">Tipo do Aviso</label>
+                    <select id="aviso-tipo" class="form-select" required>
+                        <option value="atualizacao">Atualização</option>
+                        <option value="correcao">Correção</option>
+                        <option value="melhoria">Melhoria</option>
+                        <option value="manutencao">Manutenção</option>
+                        <option value="novidade">Novidade</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label" for="aviso-prioridade">Prioridade</label>
+                    <select id="aviso-prioridade" class="form-select" required>
+                        <option value="baixa">Baixa</option>
+                        <option value="media">Média</option>
+                        <option value="alta">Alta</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label" for="aviso-icone">Ícone (FontAwesome)</label>
+                    <input type="text" id="aviso-icone" class="form-input" placeholder="fas fa-bell" required>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label" for="aviso-cor">Cor (Hex)</label>
+                    <input type="color" id="aviso-cor" class="form-input" value="#2563eb" required>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">
+                        <input type="checkbox" id="aviso-ativo" checked> Aviso Ativo
+                    </label>
+                </div>
+
+                <div class="form-actions">
+                    <button type="button" class="btn btn-primary btn-small" id="closeAvisoModalBtn">Cancelar</button>
+                    <button type="submit" class="btn btn-success">Salvar Aviso</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            let avisos = [];
+            let avisoEditando = null;
+
+            // Elementos DOM
+            const avisosContainer = document.getElementById('avisos-container');
+            const avisoModal = document.getElementById('avisoModal');
+            const avisoForm = document.getElementById('avisoForm');
+            const novoAvisoBtn = document.getElementById('novo-aviso-btn');
+
+            // Carregar avisos
+            carregarAvisos();
+
+            // Event listeners
+            novoAvisoBtn.addEventListener('click', () => abrirModalAviso());
+            document.getElementById('closeAvisoModal').addEventListener('click', fecharModalAviso);
+            document.getElementById('closeAvisoModalBtn').addEventListener('click', fecharModalAviso);
+            avisoForm.addEventListener('submit', salvarAviso);
+
+            function carregarAvisos() {
+                fetch('teste.json')
+                    .then(response => response.json())
+                    .then(data => {
+                        avisos = data;
+                        renderizarAvisos();
+                    })
+                    .catch(error => {
+                        console.error('Erro ao carregar avisos:', error);
+                        avisos = [];
+                        renderizarAvisos();
+                    });
+            }
+
+            function renderizarAvisos() {
+                avisosContainer.innerHTML = '';
+
+                if (avisos.length === 0) {
+                    avisosContainer.innerHTML = `
+                        <div style="text-align: center; padding: 50px; color: var(--gray);">
+                            <i class="fas fa-inbox" style="font-size: 48px; margin-bottom: 20px;"></i>
+                            <h4>Nenhum aviso encontrado</h4>
+                            <p>Crie seu primeiro aviso para começar!</p>
+                        </div>
+                    `;
+                    return;
+                }
+
+                avisos.forEach(aviso => {
+                    const card = document.createElement('div');
+                    card.className = `aviso-card tipo-${aviso.tipo} prioridade-${aviso.prioridade}`;
+                    card.style.borderLeftColor = aviso.cor;
+
+                    const dataFormatada = new Date(aviso.data).toLocaleDateString('pt-BR');
+
+                    card.innerHTML = `
+                        <div class="aviso-header">
+                            <div>
+                                <div class="aviso-titulo">
+                                    <i class="${aviso.icone}" style="color: ${aviso.cor}; margin-right: 10px;"></i>
+                                    ${aviso.titulo}
+                                </div>
+                                <div class="aviso-meta">
+                                    <span><i class="fas fa-calendar"></i> ${dataFormatada}</span>
+                                    <span><i class="fas fa-tag"></i> ${aviso.tipo}</span>
+                                    <span><i class="fas fa-exclamation-triangle"></i> ${aviso.prioridade}</span>
+                                    <span class="status-badge ${aviso.ativo ? 'status-ativo' : 'status-inativo'}">
+                                        ${aviso.ativo ? 'Ativo' : 'Inativo'}
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="aviso-conteudo">${aviso.conteudo}</div>
+                        <div class="aviso-acoes">
+                            <button class="btn btn-primary btn-small" onclick="editarAviso('${aviso.id}')">
+                                <i class="fas fa-edit"></i> Editar
+                            </button>
+                            <button class="btn btn-danger btn-small" onclick="excluirAviso('${aviso.id}')">
+                                <i class="fas fa-trash"></i> Excluir
+                            </button>
+                            <button class="btn btn-secondary btn-small" onclick="toggleAviso('${aviso.id}')">
+                                <i class="fas fa-${aviso.ativo ? 'eye-slash' : 'eye'}"></i> ${aviso.ativo ? 'Desativar' : 'Ativar'}
+                            </button>
+                        </div>
+                    `;
+
+                    avisosContainer.appendChild(card);
+                });
+            }
+
+            function abrirModalAviso(avisoId = null) {
+                if (avisoId) {
+                    avisoEditando = avisos.find(a => a.id === avisoId);
+                    if (avisoEditando) {
+                        document.getElementById('avisoModalTitle').innerHTML = '<i class="fas fa-edit"></i> Editar Aviso';
+                        document.getElementById('aviso-titulo').value = avisoEditando.titulo;
+                        document.getElementById('aviso-conteudo').value = avisoEditando.conteudo;
+                        document.getElementById('aviso-tipo').value = avisoEditando.tipo;
+                        document.getElementById('aviso-prioridade').value = avisoEditando.prioridade;
+                        document.getElementById('aviso-icone').value = avisoEditando.icone;
+                        document.getElementById('aviso-cor').value = avisoEditando.cor;
+                        document.getElementById('aviso-ativo').checked = avisoEditando.ativo;
+                    }
+                } else {
+                    avisoEditando = null;
+                    document.getElementById('avisoModalTitle').innerHTML = '<i class="fas fa-plus"></i> Novo Aviso';
+                    avisoForm.reset();
+                    document.getElementById('aviso-ativo').checked = true;
+                }
+
+                avisoModal.classList.add('active');
+            }
+
+            function fecharModalAviso() {
+                avisoModal.classList.remove('active');
+                avisoForm.reset();
+                avisoEditando = null;
+            }
+
+            function salvarAviso(e) {
+                e.preventDefault();
+
+                const avisoData = {
+                    titulo: document.getElementById('aviso-titulo').value,
+                    conteudo: document.getElementById('aviso-conteudo').value,
+                    tipo: document.getElementById('aviso-tipo').value,
+                    prioridade: document.getElementById('aviso-prioridade').value,
+                    icone: document.getElementById('aviso-icone').value,
+                    cor: document.getElementById('aviso-cor').value,
+                    ativo: document.getElementById('aviso-ativo').checked,
+                    data: new Date().toISOString().split('T')[0]
+                };
+
+                if (avisoEditando) {
+                    // Atualizar aviso existente
+                    Object.assign(avisoEditando, avisoData);
+                } else {
+                    // Criar novo aviso
+                    avisoData.id = Date.now().toString();
+                    avisos.unshift(avisoData); // Adicionar no início
+                }
+
+                // Salvar no arquivo JSON (simulação)
+                salvarAvisosNoArquivo();
+
+                // Fechar modal
+                fecharModalAviso();
+
+                // Recarregar avisos
+                renderizarAvisos();
+
+                alert(avisoEditando ? 'Aviso atualizado com sucesso!' : 'Aviso criado com sucesso!');
+            }
+
+            function salvarAvisosNoArquivo() {
+                // Em um ambiente real, isso seria feito via API
+                // Por enquanto, apenas simulamos salvando no localStorage
+                localStorage.setItem('avisos', JSON.stringify(avisos));
+
+                // Mostrar instruções para o usuário
+                console.log('Para salvar permanentemente, copie o seguinte JSON para teste.json:');
+                console.log(JSON.stringify(avisos, null, 4));
+            }
+
+            // Funções globais
+            window.editarAviso = function(avisoId) {
+                abrirModalAviso(avisoId);
+            };
+
+            window.excluirAviso = function(avisoId) {
+                if (confirm('Tem certeza que deseja excluir este aviso?')) {
+                    avisos = avisos.filter(a => a.id !== avisoId);
+                    salvarAvisosNoArquivo();
+                    renderizarAvisos();
+                    alert('Aviso excluído com sucesso!');
+                }
+            };
+
+            window.toggleAviso = function(avisoId) {
+                const aviso = avisos.find(a => a.id === avisoId);
+                if (aviso) {
+                    aviso.ativo = !aviso.ativo;
+                    salvarAvisosNoArquivo();
+                    renderizarAvisos();
+                }
+            };
+        });
+    </script>
+</body>
+</html>

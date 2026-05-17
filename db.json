@@ -1,0 +1,15 @@
+{
+    "users": [],
+    "apostas": [],
+    "saques": [],
+    "pendingPixPayments": [],
+    "config": {
+        "mensagemBoasVindas": "Bem-vindo ao nosso bot de apostas!",
+        "nomeBot": "Bot de Apostas",
+        "saqueMinimo": 10,
+        "saqueMaximo": 1000,
+        "depositoMinimo": 5,
+        "depositoMaximo": 300,
+        "payoutPercentage": 0.8
+    }
+}

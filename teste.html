@@ -1,0 +1,1951 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de Avisos - AmazonGest</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        :root {
+            --primary: #2563eb;
+            --primary-dark: #1d4ed8;
+            --secondary: #10b981;
+            --danger: #ef4444;
+            --warning: #f59e0b;
+            --light: #f8fafc;
+            --dark: #1e293b;
+            --gray: #64748b;
+            --light-gray: #e2e8f0;
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            --radius: 10px;
+        }
+
+        body {
+            background-color: #f1f5f9;
+            color: var(--dark);
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Header */
+        header {
+            background: white;
+            box-shadow: var(--shadow);
+            padding: 15px 0;
+            margin-bottom: 30px;
+            border-radius: var(--radius);
+        }
+
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .logo i {
+            font-size: 2rem;
+        }
+
+        .header-actions {
+            display: flex;
+            gap: 15px;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: var(--radius);
+            cursor: pointer;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s;
+        }
+
+        .btn-primary {
+            background-color: var(--primary);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background-color: var(--primary-dark);
+        }
+
+        .btn-secondary {
+            background-color: var(--gray);
+            color: white;
+        }
+
+        .btn-secondary:hover {
+            background-color: #475569;
+        }
+
+        /* Filtros */
+        .filters {
+            background: white;
+            border-radius: var(--radius);
+            padding: 20px;
+            box-shadow: var(--shadow);
+            margin-bottom: 30px;
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+        .filter-group {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .filter-label {
+            font-weight: 600;
+            color: var(--dark);
+        }
+
+        .filter-select {
+            padding: 8px 12px;
+            border: 2px solid var(--light-gray);
+            border-radius: var(--radius);
+            background-color: white;
+            cursor: pointer;
+        }
+
+        .filter-select:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+
+        /* Cards de Avisos */
+        .avisos-container {
+            display: grid;
+            gap: 20px;
+        }
+
+        .aviso-card {
+            background: white;
+            border-radius: var(--radius);
+            padding: 25px;
+            box-shadow: var(--shadow);
+            border-left: 4px solid var(--primary);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .aviso-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px -1px rgba(0, 0, 0, 0.15);
+        }
+
+        .aviso-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 15px;
+        }
+
+        .aviso-titulo {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--dark);
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .aviso-meta {
+            display: flex;
+            gap: 15px;
+            font-size: 0.9rem;
+            color: var(--gray);
+            flex-wrap: wrap;
+        }
+
+        .aviso-meta span {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .aviso-conteudo {
+            color: var(--dark);
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .aviso-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 15px;
+            border-top: 1px solid var(--light-gray);
+        }
+
+        .status-badge {
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        .status-ativo {
+            background-color: #dcfce7;
+            color: #166534;
+        }
+
+        .status-inativo {
+            background-color: #fee2e2;
+            color: #991b1b;
+        }
+
+        .prioridade-badge {
+            padding: 4px 8px;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        .prioridade-alta {
+            background-color: #fef2f2;
+            color: #dc2626;
+        }
+
+        .prioridade-media {
+            background-color: #fefce8;
+            color: #d97706;
+        }
+
+        .prioridade-baixa {
+            background-color: #f0fdf4;
+            color: #16a34a;
+        }
+
+        /* Tipos de avisos */
+        .tipo-atualizacao { border-left-color: #2563eb; }
+        .tipo-correcao { border-left-color: #059669; }
+        .tipo-melhoria { border-left-color: #7c3aed; }
+        .tipo-manutencao { border-left-color: #dc2626; }
+        .tipo-novidade { border-left-color: #0891b2; }
+
+        /* Estatísticas */
+        .stats-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .stat-card {
+            background: white;
+            border-radius: var(--radius);
+            padding: 20px;
+            box-shadow: var(--shadow);
+            text-align: center;
+        }
+
+        .stat-value {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 5px;
+        }
+
+        .stat-label {
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+
+        /* Loading */
+        .loading {
+            text-align: center;
+            padding: 50px;
+            color: var(--gray);
+        }
+
+        .loading i {
+            font-size: 2rem;
+            margin-bottom: 15px;
+        }
+
+        /* Responsividade */
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .filters {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .filter-group {
+                justify-content: space-between;
+            }
+
+            .aviso-header {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .aviso-meta {
+                justify-content: center;
+            }
+
+            .aviso-footer {
+                flex-direction: column;
+                gap: 10px;
+                text-align: center;
+            }
+
+            .stats-container {
+                grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            }
+        }
+
+        /* Animações */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .aviso-card {
+            animation: fadeIn 0.5s ease-out;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <div class="logo">
+                <i class="fas fa-bell"></i>
+                <span>Sistema de Avisos - AmazonGest</span>
+            </div>
+            <div class="header-actions">
+                <a href="editor-avisos.html" class="btn btn-secondary">
+                    <i class="fas fa-edit"></i> Editar Avisos
+                </a>
+                <a href="index.php" class="btn btn-primary">
+                    <i class="fas fa-home"></i> Voltar ao Sistema
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+        <!-- Estatísticas -->
+        <div class="stats-container" id="stats-container">
+            <div class="stat-card">
+                <div class="stat-value" id="total-avisos">0</div>
+                <div class="stat-label">Total de Avisos</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value" id="avisos-ativos">0</div>
+                <div class="stat-label">Avisos Ativos</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value" id="avisos-hoje">0</div>
+                <div class="stat-label">Avisos de Hoje</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value" id="avisos-prioridade-alta">0</div>
+                <div class="stat-label">Prioridade Alta</div>
+            </div>
+        </div>
+
+        <!-- Filtros -->
+        <div class="filters">
+            <div class="filter-group">
+                <span class="filter-label"><i class="fas fa-filter"></i> Filtrar por:</span>
+            </div>
+            <div class="filter-group">
+                <label class="filter-label">Tipo:</label>
+                <select class="filter-select" id="filtro-tipo">
+                    <option value="todos">Todos</option>
+                    <option value="atualizacao">Atualização</option>
+                    <option value="correcao">Correção</option>
+                    <option value="melhoria">Melhoria</option>
+                    <option value="manutencao">Manutenção</option>
+                    <option value="novidade">Novidade</option>
+                </select>
+            </div>
+            <div class="filter-group">
+                <label class="filter-label">Prioridade:</label>
+                <select class="filter-select" id="filtro-prioridade">
+                    <option value="todos">Todas</option>
+                    <option value="alta">Alta</option>
+                    <option value="media">Média</option>
+                    <option value="baixa">Baixa</option>
+                </select>
+            </div>
+            <div class="filter-group">
+                <label class="filter-label">Status:</label>
+                <select class="filter-select" id="filtro-status">
+                    <option value="todos">Todos</option>
+                    <option value="ativo">Ativos</option>
+                    <option value="inativo">Inativos</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- Container de Avisos -->
+        <div class="avisos-container" id="avisos-container">
+            <div class="loading">
+                <i class="fas fa-spinner fa-spin"></i>
+                <p>Carregando avisos...</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            let todosAvisos = [];
+            let avisosFiltrados = [];
+
+            // Elementos DOM
+            const avisosContainer = document.getElementById('avisos-container');
+            const filtroTipo = document.getElementById('filtro-tipo');
+            const filtroPrioridade = document.getElementById('filtro-prioridade');
+            const filtroStatus = document.getElementById('filtro-status');
+
+            // Estatísticas
+            const totalAvisos = document.getElementById('total-avisos');
+            const avisosAtivos = document.getElementById('avisos-ativos');
+            const avisosHoje = document.getElementById('avisos-hoje');
+            const avisosPrioridadeAlta = document.getElementById('avisos-prioridade-alta');
+
+            // Carregar avisos
+            carregarAvisos();
+
+            // Event listeners para filtros
+            filtroTipo.addEventListener('change', aplicarFiltros);
+            filtroPrioridade.addEventListener('change', aplicarFiltros);
+            filtroStatus.addEventListener('change', aplicarFiltros);
+
+            function carregarAvisos() {
+                fetch('teste.json')
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error('Erro ao carregar arquivo de avisos');
+                        }
+                        return response.json();
+                    })
+                    .then(data => {
+                        todosAvisos = data;
+                        aplicarFiltros();
+                        atualizarEstatisticas();
+                    })
+                    .catch(error => {
+                        console.error('Erro ao carregar avisos:', error);
+                        avisosContainer.innerHTML = `
+                            <div style="text-align: center; padding: 50px; color: var(--gray); grid-column: 1 / -1;">
+                                <i class="fas fa-exclamation-triangle" style="font-size: 48px; margin-bottom: 20px; color: var(--warning);"></i>
+                                <h4>Erro ao carregar avisos</h4>
+                                <p>Verifique se o arquivo teste.json existe e está acessível.</p>
+                                <p style="font-size: 0.9rem; margin-top: 10px; color: var(--danger);">${error.message}</p>
+                            </div>
+                        `;
+                    });
+            }
+
+            function aplicarFiltros() {
+                const tipoSelecionado = filtroTipo.value;
+                const prioridadeSelecionada = filtroPrioridade.value;
+                const statusSelecionado = filtroStatus.value;
+
+                avisosFiltrados = todosAvisos.filter(aviso => {
+                    // Filtro por tipo
+                    if (tipoSelecionado !== 'todos' && aviso.tipo !== tipoSelecionado) {
+                        return false;
+                    }
+
+                    // Filtro por prioridade
+                    if (prioridadeSelecionada !== 'todos' && aviso.prioridade !== prioridadeSelecionada) {
+                        return false;
+                    }
+
+                    // Filtro por status
+                    if (statusSelecionado !== 'todos') {
+                        const isAtivo = statusSelecionado === 'ativo';
+                        if (aviso.ativo !== isAtivo) {
+                            return false;
+                        }
+                    }
+
+                    return true;
+                });
+
+                // Ordenar por data (mais recentes primeiro) e depois por prioridade
+                avisosFiltrados.sort((a, b) => {
+                    // Primeiro por data
+                    const dataA = new Date(a.data);
+                    const dataB = new Date(b.data);
+                    if (dataA.getTime() !== dataB.getTime()) {
+                        return dataB - dataA;
+                    }
+
+                    // Depois por prioridade (alta > media > baixa)
+                    const prioridadeOrder = { alta: 3, media: 2, baixa: 1 };
+                    return prioridadeOrder[b.prioridade] - prioridadeOrder[a.prioridade];
+                });
+
+                renderizarAvisos();
+            }
+
+            function renderizarAvisos() {
+                if (avisosFiltrados.length === 0) {
+                    avisosContainer.innerHTML = `
+                        <div style="text-align: center; padding: 50px; color: var(--gray);">
+                            <i class="fas fa-inbox" style="font-size: 48px; margin-bottom: 20px;"></i>
+                            <h4>Nenhum aviso encontrado</h4>
+                            <p>Não há avisos que correspondam aos filtros selecionados.</p>
+                        </div>
+                    `;
+                    return;
+                }
+
+                avisosContainer.innerHTML = '';
+
+                avisosFiltrados.forEach((aviso, index) => {
+                    const card = document.createElement('div');
+                    card.className = `aviso-card tipo-${aviso.tipo}`;
+                    card.style.borderLeftColor = aviso.cor;
+                    card.style.animationDelay = `${index * 0.1}s`;
+
+                    const dataFormatada = new Date(aviso.data).toLocaleDateString('pt-BR', {
+                        day: '2-digit',
+                        month: '2-digit',
+                        year: 'numeric'
+                    });
+
+                    const tipoLabels = {
+                        atualizacao: 'Atualização',
+                        correcao: 'Correção',
+                        melhoria: 'Melhoria',
+                        manutencao: 'Manutenção',
+                        novidade: 'Novidade'
+                    };
+
+                    const prioridadeLabels = {
+                        alta: 'Alta',
+                        media: 'Média',
+                        baixa: 'Baixa'
+                    };
+
+                    card.innerHTML = `
+                        <div class="aviso-header">
+                            <div class="aviso-titulo">
+                                <i class="${aviso.icone}" style="color: ${aviso.cor};"></i>
+                                ${aviso.titulo}
+                            </div>
+                            <div class="prioridade-badge prioridade-${aviso.prioridade}">
+                                ${prioridadeLabels[aviso.prioridade]}
+                            </div>
+                        </div>
+
+                        <div class="aviso-meta">
+                            <span><i class="fas fa-calendar"></i> ${dataFormatada}</span>
+                            <span><i class="fas fa-tag"></i> ${tipoLabels[aviso.tipo]}</span>
+                            <span><i class="fas fa-circle" style="color: ${aviso.cor};"></i> ${tipoLabels[aviso.tipo]}</span>
+                        </div>
+
+                        <div class="aviso-conteudo">
+                            ${aviso.conteudo.replace(/\n/g, '<br>')}
+                        </div>
+
+                        <div class="aviso-footer">
+                            <div class="status-badge ${aviso.ativo ? 'status-ativo' : 'status-inativo'}">
+                                <i class="fas fa-${aviso.ativo ? 'check-circle' : 'times-circle'}"></i>
+                                ${aviso.ativo ? 'Ativo' : 'Inativo'}
+                            </div>
+                            <div style="font-size: 0.8rem; color: var(--gray);">
+                                ID: ${aviso.id}
+                            </div>
+                        </div>
+                    `;
+
+                    avisosContainer.appendChild(card);
+                });
+            }
+
+            function atualizarEstatisticas() {
+                const hoje = new Date().toISOString().split('T')[0];
+
+                totalAvisos.textContent = todosAvisos.length;
+                avisosAtivos.textContent = todosAvisos.filter(a => a.ativo).length;
+                avisosHoje.textContent = todosAvisos.filter(a => a.data === hoje).length;
+                avisosPrioridadeAlta.textContent = todosAvisos.filter(a => a.prioridade === 'alta').length;
+            }
+
+            // Função para atualizar avisos automaticamente a cada 30 segundos
+            setInterval(() => {
+                carregarAvisos();
+            }, 30000);
+        });
+    </script>
+</body>
+</html>
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .card {
+            background: white;
+            border-radius: var(--radius);
+            padding: 25px;
+            box-shadow: var(--shadow);
+            transition: transform 0.3s;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .card-title {
+            font-size: 1.1rem;
+            color: var(--gray);
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .card-value {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+        
+        .card-detail {
+            font-size: 0.9rem;
+            color: var(--gray);
+            margin-top: 10px;
+        }
+        
+        /* Formulário de Rastreamento */
+        .tracking-section {
+            background: white;
+            border-radius: var(--radius);
+            padding: 30px;
+            box-shadow: var(--shadow);
+            margin-bottom: 30px;
+        }
+        
+        .section-title {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            color: var(--dark);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .tracking-form {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .tracking-input {
+            flex-grow: 1;
+            padding: 15px;
+            border: 2px solid var(--light-gray);
+            border-radius: var(--radius);
+            font-size: 1rem;
+            transition: border-color 0.3s;
+            min-width: 300px;
+        }
+        
+        .tracking-input:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+        
+        .track-btn {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            padding: 0 30px;
+            border-radius: var(--radius);
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: background-color 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .track-btn:hover {
+            background-color: var(--primary-dark);
+        }
+        
+        .recent-codes {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 15px;
+        }
+        
+        .recent-code {
+            background-color: var(--light-gray);
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        .recent-code:hover {
+            background-color: var(--primary);
+            color: white;
+        }
+        
+        /* Resultado do Rastreamento */
+        .tracking-result {
+            background: white;
+            border-radius: var(--radius);
+            padding: 30px;
+            box-shadow: var(--shadow);
+            margin-bottom: 30px;
+            display: none;
+        }
+        
+        .tracking-result.active {
+            display: block;
+            animation: fadeIn 0.5s ease-out;
+        }
+        
+        .order-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid var(--light-gray);
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+        
+        .order-code {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+        
+        .order-status {
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+        
+        .status-pending {
+            background-color: #fef3c7;
+            color: #92400e;
+        }
+        
+        .status-processing {
+            background-color: #dbeafe;
+            color: var(--primary-dark);
+        }
+        
+        .status-ready {
+            background-color: #dcfce7;
+            color: var(--secondary-dark);
+        }
+        
+        .status-shipped {
+            background-color: #e0e7ff;
+            color: #4f46e5;
+        }
+        
+        .status-delivered {
+            background-color: #f0fdf4;
+            color: var(--secondary-dark);
+        }
+        
+        /* Timeline */
+        .timeline {
+            position: relative;
+            max-width: 800px;
+            margin: 30px auto;
+        }
+        
+        .timeline::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 20px;
+            width: 3px;
+            background-color: var(--light-gray);
+            z-index: 1;
+        }
+        
+        .timeline-item {
+            position: relative;
+            padding-left: 60px;
+            margin-bottom: 30px;
+            z-index: 2;
+        }
+        
+        .timeline-item:last-child {
+            margin-bottom: 0;
+        }
+        
+        .timeline-marker {
+            position: absolute;
+            left: 10px;
+            top: 0;
+            width: 25px;
+            height: 25px;
+            border-radius: 50%;
+            background-color: white;
+            border: 3px solid var(--light-gray);
+            z-index: 3;
+        }
+        
+        .timeline-item.active .timeline-marker {
+            border-color: var(--primary);
+            background-color: var(--primary);
+        }
+        
+        .timeline-item.completed .timeline-marker {
+            border-color: var(--secondary);
+            background-color: var(--secondary);
+        }
+        
+        .timeline-content {
+            background-color: white;
+            padding: 20px;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+        }
+        
+        .timeline-date {
+            font-weight: 600;
+            color: var(--primary);
+            margin-bottom: 5px;
+        }
+        
+        .timeline-title {
+            font-weight: 700;
+            margin-bottom: 5px;
+            color: var(--dark);
+        }
+        
+        .timeline-desc {
+            color: var(--gray);
+            font-size: 0.95rem;
+        }
+        
+        /* Administração */
+        .admin-section {
+            background: white;
+            border-radius: var(--radius);
+            padding: 30px;
+            box-shadow: var(--shadow);
+            margin-bottom: 30px;
+        }
+        
+        .admin-actions {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+        }
+        
+        .admin-btn {
+            padding: 12px 25px;
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            border-radius: var(--radius);
+            cursor: pointer;
+            font-weight: 600;
+            transition: background-color 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .admin-btn:hover {
+            background-color: var(--primary-dark);
+        }
+        
+        .admin-btn.secondary {
+            background-color: var(--secondary);
+        }
+        
+        .admin-btn.secondary:hover {
+            background-color: var(--secondary-dark);
+        }
+        
+        .admin-btn.danger {
+            background-color: var(--danger);
+        }
+        
+        .admin-btn.danger:hover {
+            background-color: #dc2626;
+        }
+        
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .modal.active {
+            display: flex;
+        }
+        
+        .modal-content {
+            background: white;
+            border-radius: var(--radius);
+            width: 90%;
+            max-width: 500px;
+            padding: 30px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+            animation: modalFadeIn 0.3s ease-out;
+        }
+        
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        
+        .modal-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--dark);
+        }
+        
+        .close-modal {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--gray);
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: var(--dark);
+        }
+        
+        .form-input {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid var(--light-gray);
+            border-radius: var(--radius);
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+        
+        .form-input:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+        
+        .form-select {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid var(--light-gray);
+            border-radius: var(--radius);
+            font-size: 1rem;
+            background-color: white;
+            cursor: pointer;
+        }
+        
+        .form-select:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+        
+        .form-actions {
+            display: flex;
+            justify-content: flex-end;
+            gap: 10px;
+            margin-top: 30px;
+        }
+        
+        /* Lista de Pedidos */
+        .orders-list {
+            background: white;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            overflow: hidden;
+        }
+        
+        .orders-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        
+        .orders-table th {
+            background-color: var(--primary);
+            color: white;
+            text-align: left;
+            padding: 15px;
+            font-weight: 600;
+        }
+        
+        .orders-table td {
+            padding: 15px;
+            border-bottom: 1px solid var(--light-gray);
+        }
+        
+        .orders-table tr:hover {
+            background-color: #f8fafc;
+        }
+        
+        /* Responsividade */
+        @media (max-width: 768px) {
+            .dashboard-cards {
+                grid-template-columns: 1fr;
+            }
+            
+            .tracking-form {
+                flex-direction: column;
+            }
+            
+            .tracking-input {
+                min-width: auto;
+            }
+            
+            .track-btn {
+                justify-content: center;
+            }
+            
+            .header-container {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .admin-actions {
+                flex-direction: column;
+            }
+            
+            .orders-table {
+                display: block;
+                overflow-x: auto;
+            }
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        @keyframes modalFadeIn {
+            from { opacity: 0; transform: scale(0.9); }
+            to { opacity: 1; transform: scale(1); }
+        }
+    </style>
+</head>
+<body>
+    <!-- Modal de Login -->
+    <div class="modal" id="loginModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title"><i class="fas fa-sign-in-alt"></i> Acesso ao Sistema</h2>
+                <button class="close-modal" id="closeLoginModal">&times;</button>
+            </div>
+            <form id="loginForm">
+                <div class="form-group">
+                    <label class="form-label" for="username">Usuário</label>
+                    <input type="text" id="username" class="form-input" placeholder="Digite seu usuário" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="password">Senha</label>
+                    <input type="password" id="password" class="form-input" placeholder="Digite sua senha" required>
+                </div>
+                <div class="form-actions">
+                    <button type="submit" class="admin-btn">Entrar</button>
+                </div>
+            </form>
+            <div style="margin-top: 20px; padding: 15px; background-color: #f0f9ff; border-radius: var(--radius);">
+                <p style="font-size: 0.9rem; color: var(--gray); margin-bottom: 10px;">Para testar o sistema:</p>
+                <p style="font-size: 0.9rem;"><strong>Usuário:</strong> admin | <strong>Senha:</strong> admin123</p>
+                <p style="font-size: 0.9rem; margin-top: 5px;"><strong>Usuário:</strong> cliente | <strong>Senha:</strong> cliente123</p>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Modal para Criar/Editar Pedido -->
+    <div class="modal" id="orderModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title" id="orderModalTitle"><i class="fas fa-box"></i> Novo Pedido</h2>
+                <button class="close-modal" id="closeOrderModal">&times;</button>
+            </div>
+            <form id="orderForm">
+                <div class="form-group">
+                    <label class="form-label" for="customerName">Nome do Cliente</label>
+                    <input type="text" id="customerName" class="form-input" placeholder="Digite o nome do cliente" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="customerEmail">Email do Cliente</label>
+                    <input type="email" id="customerEmail" class="form-input" placeholder="Digite o email do cliente" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="product">Produto</label>
+                    <input type="text" id="product" class="form-input" placeholder="Digite o nome do produto" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="orderStatus">Status</label>
+                    <select id="orderStatus" class="form-select" required>
+                        <option value="pending">Pendente</option>
+                        <option value="processing">Processando</option>
+                        <option value="ready">Pronto para sair</option>
+                        <option value="shipped">Enviado</option>
+                        <option value="delivered">Entregue</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="trackingCode">Código de Rastreamento</label>
+                    <input type="text" id="trackingCode" class="form-input" placeholder="Código será gerado automaticamente" readonly>
+                </div>
+                <div class="form-actions">
+                    <button type="button" class="admin-btn secondary" id="generateCodeBtn">Gerar Código</button>
+                    <button type="submit" class="admin-btn">Salvar Pedido</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    
+    <!-- Modal para Adicionar Atualização -->
+    <div class="modal" id="updateModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title"><i class="fas fa-history"></i> Atualizar Status do Pedido</h2>
+                <button class="close-modal" id="closeUpdateModal">&times;</button>
+            </div>
+            <form id="updateForm">
+                <div class="form-group">
+                    <label class="form-label" for="updateStatus">Novo Status</label>
+                    <select id="updateStatus" class="form-select" required>
+                        <option value="pending">Pendente</option>
+                        <option value="processing">Processando</option>
+                        <option value="ready">Pronto para sair</option>
+                        <option value="shipped">Enviado</option>
+                        <option value="delivered">Entregue</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="updateDescription">Descrição da Atualização</label>
+                    <textarea id="updateDescription" class="form-input" rows="3" placeholder="Descreva a atualização do status" required></textarea>
+                </div>
+                <div class="form-actions">
+                    <button type="submit" class="admin-btn">Atualizar Pedido</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    
+    <!-- Conteúdo Principal -->
+    <header>
+        <div class="header-container">
+            <div class="logo">
+                <i class="fas fa-shipping-fast"></i>
+                <span>Rastreamento de Pedidos</span>
+            </div>
+            <div class="user-info" id="userInfo" style="display: none;">
+                <span id="userName"></span>
+                <button class="logout-btn" id="logoutBtn"><i class="fas fa-sign-out-alt"></i> Sair</button>
+            </div>
+        </div>
+    </header>
+    
+    <div class="container">
+        <!-- Dashboard -->
+        <div id="dashboard" style="display: none;">
+            <div class="dashboard-cards">
+                <div class="card">
+                    <div class="card-title"><i class="fas fa-box-open"></i> Pedidos Totais</div>
+                    <div class="card-value" id="totalOrders">0</div>
+                    <div class="card-detail">Pedidos registrados no sistema</div>
+                </div>
+                <div class="card">
+                    <div class="card-title"><i class="fas fa-clock"></i> Pendentes</div>
+                    <div class="card-value" id="pendingOrders">0</div>
+                    <div class="card-detail">Aguardando processamento</div>
+                </div>
+                <div class="card">
+                    <div class="card-title"><i class="fas fa-check-circle"></i> Prontos para Sair</div>
+                    <div class="card-value" id="readyOrders">0</div>
+                    <div class="card-detail">Aguardando envio</div>
+                </div>
+                <div class="card">
+                    <div class="card-title"><i class="fas fa-truck"></i> Entregues</div>
+                    <div class="card-value" id="deliveredOrders">0</div>
+                    <div class="card-detail">Pedidos concluídos</div>
+                </div>
+            </div>
+            
+            <!-- Área de Rastreamento -->
+            <div class="tracking-section">
+                <h2 class="section-title"><i class="fas fa-search"></i> Rastrear Pedido</h2>
+                <div class="tracking-form">
+                    <input type="text" class="tracking-input" id="trackingCodeInput" placeholder="Digite o código de rastreamento (ex: TRK123456)">
+                    <button class="track-btn" id="trackBtn"><i class="fas fa-search"></i> Rastrear</button>
+                </div>
+                <div class="recent-codes" id="recentCodes">
+                    <!-- Códigos recentes serão inseridos aqui -->
+                </div>
+            </div>
+            
+            <!-- Resultado do Rastreamento -->
+            <div class="tracking-result" id="trackingResult">
+                <div class="order-header">
+                    <div class="order-code" id="resultCode">TRK123456</div>
+                    <div class="order-status status-ready" id="resultStatus">Pronto para sair</div>
+                </div>
+                
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin-bottom: 30px;">
+                    <div>
+                        <h3 style="font-size: 1rem; color: var(--gray); margin-bottom: 5px;">Cliente</h3>
+                        <p style="font-weight: 600;" id="resultCustomer">João Silva</p>
+                    </div>
+                    <div>
+                        <h3 style="font-size: 1rem; color: var(--gray); margin-bottom: 5px;">Produto</h3>
+                        <p style="font-weight: 600;" id="resultProduct">Smartphone XYZ</p>
+                    </div>
+                    <div>
+                        <h3 style="font-size: 1rem; color: var(--gray); margin-bottom: 5px;">Data do Pedido</h3>
+                        <p style="font-weight: 600;" id="resultDate">15/04/2024</p>
+                    </div>
+                    <div>
+                        <h3 style="font-size: 1rem; color: var(--gray); margin-bottom: 5px;">Previsão de Entrega</h3>
+                        <p style="font-weight: 600;" id="resultDelivery">25/04/2024</p>
+                    </div>
+                </div>
+                
+                <h3 class="section-title"><i class="fas fa-history"></i> Histórico do Pedido</h3>
+                <div class="timeline" id="timeline">
+                    <!-- Timeline será inserida aqui -->
+                </div>
+            </div>
+            
+            <!-- Área de Administração (visível apenas para admin) -->
+            <div class="admin-section" id="adminSection" style="display: none;">
+                <h2 class="section-title"><i class="fas fa-cogs"></i> Administração</h2>
+                
+                <div class="admin-actions">
+                    <button class="admin-btn" id="newOrderBtn"><i class="fas fa-plus-circle"></i> Novo Pedido</button>
+                    <button class="admin-btn secondary" id="updateOrderBtn"><i class="fas fa-edit"></i> Atualizar Status</button>
+                    <button class="admin-btn danger" id="clearDataBtn"><i class="fas fa-trash"></i> Limpar Dados</button>
+                </div>
+                
+                <h3 class="section-title"><i class="fas fa-list"></i> Todos os Pedidos</h3>
+                <div class="orders-list">
+                    <table class="orders-table" id="ordersTable">
+                        <thead>
+                            <tr>
+                                <th>Código</th>
+                                <th>Cliente</th>
+                                <th>Produto</th>
+                                <th>Status</th>
+                                <th>Data</th>
+                                <th>Ações</th>
+                            </tr>
+                        </thead>
+                        <tbody id="ordersTableBody">
+                            <!-- Pedidos serão inseridos aqui -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Sistema de Rastreamento de Pedidos - Funcionalidade Completa
+        document.addEventListener('DOMContentLoaded', function() {
+            // Elementos DOM
+            const loginModal = document.getElementById('loginModal');
+            const orderModal = document.getElementById('orderModal');
+            const updateModal = document.getElementById('updateModal');
+            const dashboard = document.getElementById('dashboard');
+            const userInfo = document.getElementById('userInfo');
+            const userName = document.getElementById('userName');
+            const logoutBtn = document.getElementById('logoutBtn');
+            const loginForm = document.getElementById('loginForm');
+            const orderForm = document.getElementById('orderForm');
+            const updateForm = document.getElementById('updateForm');
+            const trackingResult = document.getElementById('trackingResult');
+            const ordersTableBody = document.getElementById('ordersTableBody');
+            const adminSection = document.getElementById('adminSection');
+            const newOrderBtn = document.getElementById('newOrderBtn');
+            const updateOrderBtn = document.getElementById('updateOrderBtn');
+            const clearDataBtn = document.getElementById('clearDataBtn');
+            const trackBtn = document.getElementById('trackBtn');
+            const trackingCodeInput = document.getElementById('trackingCodeInput');
+            const recentCodes = document.getElementById('recentCodes');
+            const generateCodeBtn = document.getElementById('generateCodeBtn');
+            const trackingCodeField = document.getElementById('trackingCode');
+            
+            // Estatísticas
+            const totalOrders = document.getElementById('totalOrders');
+            const pendingOrders = document.getElementById('pendingOrders');
+            const readyOrders = document.getElementById('readyOrders');
+            const deliveredOrders = document.getElementById('deliveredOrders');
+            
+            // Estado da aplicação
+            let currentUser = null;
+            let currentOrderId = null;
+            let isAdmin = false;
+            
+            // Inicializar dados no localStorage se não existirem
+            initializeData();
+            
+            // Mostrar modal de login ao carregar a página
+            loginModal.classList.add('active');
+            
+            // Configurar eventos
+            setupEventListeners();
+            
+            // Função para inicializar dados
+            function initializeData() {
+                // Verificar se já existem dados no localStorage
+                if (!localStorage.getItem('orders')) {
+                    // Criar dados iniciais
+                    const sampleOrders = [
+                        {
+                            id: '1',
+                            code: 'TRK789012',
+                            customer: 'Maria Santos',
+                            email: 'maria@email.com',
+                            product: 'Notebook ABC',
+                            status: 'ready',
+                            date: '2024-04-10',
+                            estimatedDelivery: '2024-04-20',
+                            updates: [
+                                { status: 'pending', description: 'Pedido recebido', date: '2024-04-10' },
+                                { status: 'processing', description: 'Pedido em processamento', date: '2024-04-12' },
+                                { status: 'ready', description: 'Pedido pronto para sair', date: '2024-04-15' }
+                            ]
+                        },
+                        {
+                            id: '2',
+                            code: 'TRK345678',
+                            customer: 'Carlos Oliveira',
+                            email: 'carlos@email.com',
+                            product: 'Tablet XYZ',
+                            status: 'shipped',
+                            date: '2024-04-05',
+                            estimatedDelivery: '2024-04-18',
+                            updates: [
+                                { status: 'pending', description: 'Pedido recebido', date: '2024-04-05' },
+                                { status: 'processing', description: 'Pedido em processamento', date: '2024-04-07' },
+                                { status: 'ready', description: 'Pedido pronto para sair', date: '2024-04-09' },
+                                { status: 'shipped', description: 'Pedido enviado para transportadora', date: '2024-04-10' }
+                            ]
+                        },
+                        {
+                            id: '3',
+                            code: 'TRK901234',
+                            customer: 'Ana Costa',
+                            email: 'ana@email.com',
+                            product: 'Fone de Ouvido',
+                            status: 'delivered',
+                            date: '2024-03-28',
+                            estimatedDelivery: '2024-04-10',
+                            updates: [
+                                { status: 'pending', description: 'Pedido recebido', date: '2024-03-28' },
+                                { status: 'processing', description: 'Pedido em processamento', date: '2024-03-30' },
+                                { status: 'ready', description: 'Pedido pronto para sair', date: '2024-04-02' },
+                                { status: 'shipped', description: 'Pedido enviado para transportadora', date: '2024-04-03' },
+                                { status: 'delivered', description: 'Pedido entregue ao cliente', date: '2024-04-08' }
+                            ]
+                        }
+                    ];
+                    
+                    localStorage.setItem('orders', JSON.stringify(sampleOrders));
+                }
+                
+                // Inicializar usuários se não existirem
+                if (!localStorage.getItem('users')) {
+                    const users = [
+                        { username: 'admin', password: 'admin123', name: 'Administrador', isAdmin: true },
+                        { username: 'cliente', password: 'cliente123', name: 'Cliente Teste', isAdmin: false }
+                    ];
+                    
+                    localStorage.setItem('users', JSON.stringify(users));
+                }
+                
+                // Inicializar códigos recentes se não existirem
+                if (!localStorage.getItem('recentCodes')) {
+                    localStorage.setItem('recentCodes', JSON.stringify(['TRK789012', 'TRK345678', 'TRK901234']));
+                }
+            }
+            
+            // Configurar todos os event listeners
+            function setupEventListeners() {
+                // Login
+                loginForm.addEventListener('submit', handleLogin);
+                document.getElementById('closeLoginModal').addEventListener('click', () => {
+                    loginModal.classList.remove('active');
+                });
+                
+                // Logout
+                logoutBtn.addEventListener('click', handleLogout);
+                
+                // Rastreamento
+                trackBtn.addEventListener('click', handleTrackOrder);
+                trackingCodeInput.addEventListener('keypress', (e) => {
+                    if (e.key === 'Enter') {
+                        handleTrackOrder();
+                    }
+                });
+                
+                // Administração
+                if (newOrderBtn) newOrderBtn.addEventListener('click', () => openOrderModal());
+                if (updateOrderBtn) updateOrderBtn.addEventListener('click', openUpdateModal);
+                if (clearDataBtn) clearDataBtn.addEventListener('click', clearAllData);
+                
+                // Modais
+                document.getElementById('closeOrderModal').addEventListener('click', () => {
+                    orderModal.classList.remove('active');
+                });
+                
+                document.getElementById('closeUpdateModal').addEventListener('click', () => {
+                    updateModal.classList.remove('active');
+                });
+                
+                // Forms
+                orderForm.addEventListener('submit', handleSaveOrder);
+                updateForm.addEventListener('submit', handleUpdateOrder);
+                generateCodeBtn.addEventListener('click', generateTrackingCode);
+                
+                // Códigos recentes (delegação de eventos)
+                recentCodes.addEventListener('click', (e) => {
+                    if (e.target.classList.contains('recent-code')) {
+                        trackingCodeInput.value = e.target.textContent;
+                        handleTrackOrder();
+                    }
+                });
+            }
+            
+            // Manipular login
+            function handleLogin(e) {
+                e.preventDefault();
+                
+                const username = document.getElementById('username').value;
+                const password = document.getElementById('password').value;
+                
+                // Obter usuários do localStorage
+                const users = JSON.parse(localStorage.getItem('users')) || [];
+                
+                // Verificar credenciais
+                const user = users.find(u => u.username === username && u.password === password);
+                
+                if (user) {
+                    currentUser = user;
+                    isAdmin = user.isAdmin || false;
+                    
+                    // Fechar modal de login
+                    loginModal.classList.remove('active');
+                    
+                    // Atualizar interface
+                    updateUIAfterLogin();
+                    
+                    // Carregar dados do dashboard
+                    loadDashboardData();
+                    
+                    // Mostrar códigos recentes
+                    showRecentCodes();
+                } else {
+                    alert('Usuário ou senha incorretos!');
+                }
+            }
+            
+            // Manipular logout
+            function handleLogout() {
+                currentUser = null;
+                isAdmin = false;
+                
+                // Esconder dashboard
+                dashboard.style.display = 'none';
+                userInfo.style.display = 'none';
+                
+                // Mostrar modal de login
+                loginModal.classList.add('active');
+                
+                // Limpar formulário de login
+                loginForm.reset();
+            }
+            
+            // Atualizar UI após login
+            function updateUIAfterLogin() {
+                dashboard.style.display = 'block';
+                userInfo.style.display = 'flex';
+                userName.textContent = currentUser.name;
+                
+                // Mostrar/ocultar seção de administração
+                adminSection.style.display = isAdmin ? 'block' : 'none';
+            }
+            
+            // Carregar dados do dashboard
+            function loadDashboardData() {
+                const orders = JSON.parse(localStorage.getItem('orders')) || [];
+                
+                // Atualizar estatísticas
+                totalOrders.textContent = orders.length;
+                pendingOrders.textContent = orders.filter(o => o.status === 'pending').length;
+                readyOrders.textContent = orders.filter(o => o.status === 'ready').length;
+                deliveredOrders.textContent = orders.filter(o => o.status === 'delivered').length;
+                
+                // Atualizar tabela de pedidos (se admin)
+                if (isAdmin) {
+                    updateOrdersTable(orders);
+                }
+            }
+            
+            // Atualizar tabela de pedidos
+            function updateOrdersTable(orders) {
+                ordersTableBody.innerHTML = '';
+                
+                if (orders.length === 0) {
+                    ordersTableBody.innerHTML = '<tr><td colspan="6" style="text-align: center; padding: 30px;">Nenhum pedido encontrado</td></tr>';
+                    return;
+                }
+                
+                orders.forEach(order => {
+                    const row = document.createElement('tr');
+                    
+                    // Mapear status para texto e classe
+                    const statusMap = {
+                        'pending': { text: 'Pendente', class: 'status-pending' },
+                        'processing': { text: 'Processando', class: 'status-processing' },
+                        'ready': { text: 'Pronto para sair', class: 'status-ready' },
+                        'shipped': { text: 'Enviado', class: 'status-shipped' },
+                        'delivered': { text: 'Entregue', class: 'status-delivered' }
+                    };
+                    
+                    const statusInfo = statusMap[order.status] || statusMap.pending;
+                    
+                    // Formatar data
+                    const orderDate = new Date(order.date);
+                    const formattedDate = orderDate.toLocaleDateString('pt-BR');
+                    
+                    row.innerHTML = `
+                        <td>${order.code}</td>
+                        <td>${order.customer}</td>
+                        <td>${order.product}</td>
+                        <td><span class="order-status ${statusInfo.class}">${statusInfo.text}</span></td>
+                        <td>${formattedDate}</td>
+                        <td>
+                            <button class="admin-btn" style="padding: 5px 10px; font-size: 0.8rem;" onclick="viewOrder('${order.id}')">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                            <button class="admin-btn secondary" style="padding: 5px 10px; font-size: 0.8rem; margin-left: 5px;" onclick="editOrder('${order.id}')">
+                                <i class="fas fa-edit"></i>
+                            </button>
+                        </td>
+                    `;
+                    
+                    ordersTableBody.appendChild(row);
+                });
+            }
+            
+            // Mostrar códigos recentes
+            function showRecentCodes() {
+                const codes = JSON.parse(localStorage.getItem('recentCodes')) || [];
+                recentCodes.innerHTML = '';
+                
+                codes.forEach(code => {
+                    const codeElement = document.createElement('div');
+                    codeElement.className = 'recent-code';
+                    codeElement.textContent = code;
+                    recentCodes.appendChild(codeElement);
+                });
+            }
+            
+            // Manipular rastreamento de pedido
+            function handleTrackOrder() {
+                const code = trackingCodeInput.value.trim().toUpperCase();
+                
+                if (!code) {
+                    alert('Por favor, digite um código de rastreamento.');
+                    return;
+                }
+                
+                const orders = JSON.parse(localStorage.getItem('orders')) || [];
+                const order = orders.find(o => o.code === code);
+                
+                if (order) {
+                    // Adicionar código aos recentes
+                    addToRecentCodes(code);
+                    
+                    // Mostrar resultado
+                    displayOrderResult(order);
+                    
+                    // Rolar para o resultado
+                    trackingResult.scrollIntoView({ behavior: 'smooth' });
+                } else {
+                    alert('Código de rastreamento não encontrado. Verifique o código e tente novamente.');
+                }
+            }
+            
+            // Adicionar código aos recentes
+            function addToRecentCodes(code) {
+                let codes = JSON.parse(localStorage.getItem('recentCodes')) || [];
+                
+                // Remover se já existir
+                codes = codes.filter(c => c !== code);
+                
+                // Adicionar no início
+                codes.unshift(code);
+                
+                // Manter apenas os 5 mais recentes
+                if (codes.length > 5) {
+                    codes = codes.slice(0, 5);
+                }
+                
+                localStorage.setItem('recentCodes', JSON.stringify(codes));
+                showRecentCodes();
+            }
+            
+            // Exibir resultado do pedido
+            function displayOrderResult(order) {
+                // Atualizar informações básicas
+                document.getElementById('resultCode').textContent = order.code;
+                document.getElementById('resultCustomer').textContent = order.customer;
+                document.getElementById('resultProduct').textContent = order.product;
+                
+                // Formatar datas
+                const orderDate = new Date(order.date);
+                document.getElementById('resultDate').textContent = orderDate.toLocaleDateString('pt-BR');
+                
+                const deliveryDate = new Date(order.estimatedDelivery);
+                document.getElementById('resultDelivery').textContent = deliveryDate.toLocaleDateString('pt-BR');
+                
+                // Atualizar status
+                const statusMap = {
+                    'pending': { text: 'Pendente', class: 'status-pending' },
+                    'processing': { text: 'Processando', class: 'status-processing' },
+                    'ready': { text: 'Pronto para sair', class: 'status-ready' },
+                    'shipped': { text: 'Enviado', class: 'status-shipped' },
+                    'delivered': { text: 'Entregue', class: 'status-delivered' }
+                };
+                
+                const statusInfo = statusMap[order.status] || statusMap.pending;
+                const statusElement = document.getElementById('resultStatus');
+                statusElement.textContent = statusInfo.text;
+                statusElement.className = `order-status ${statusInfo.class}`;
+                
+                // Atualizar timeline
+                updateTimeline(order);
+                
+                // Mostrar resultado
+                trackingResult.classList.add('active');
+            }
+            
+            // Atualizar timeline
+            function updateTimeline(order) {
+                const timeline = document.getElementById('timeline');
+                timeline.innerHTML = '';
+                
+                if (!order.updates || order.updates.length === 0) {
+                    timeline.innerHTML = '<p style="text-align: center; color: var(--gray);">Nenhuma atualização disponível</p>';
+                    return;
+                }
+                
+                // Ordenar atualizações por data (mais recente primeiro)
+                const sortedUpdates = [...order.updates].sort((a, b) => new Date(b.date) - new Date(a.date));
+                
+                sortedUpdates.forEach((update, index) => {
+                    const isActive = index === 0; // A última atualização é a ativa
+                    const isCompleted = !isActive;
+                    
+                    const item = document.createElement('div');
+                    item.className = `timeline-item ${isActive ? 'active' : ''} ${isCompleted ? 'completed' : ''}`;
+                    
+                    const statusTextMap = {
+                        'pending': 'Pedido Recebido',
+                        'processing': 'Em Processamento',
+                        'ready': 'Pronto para Sair',
+                        'shipped': 'Enviado',
+                        'delivered': 'Entregue'
+                    };
+                    
+                    const updateDate = new Date(update.date);
+                    const formattedDate = updateDate.toLocaleDateString('pt-BR');
+                    
+                    item.innerHTML = `
+                        <div class="timeline-marker"></div>
+                        <div class="timeline-content">
+                            <div class="timeline-date">${formattedDate}</div>
+                            <div class="timeline-title">${statusTextMap[update.status] || update.status}</div>
+                            <div class="timeline-desc">${update.description}</div>
+                        </div>
+                    `;
+                    
+                    timeline.appendChild(item);
+                });
+            }
+            
+            // Abrir modal de novo pedido
+            function openOrderModal(orderId = null) {
+                const modalTitle = document.getElementById('orderModalTitle');
+                currentOrderId = orderId;
+                
+                if (orderId) {
+                    // Modo edição
+                    modalTitle.innerHTML = '<i class="fas fa-edit"></i> Editar Pedido';
+                    
+                    // Carregar dados do pedido
+                    const orders = JSON.parse(localStorage.getItem('orders')) || [];
+                    const order = orders.find(o => o.id === orderId);
+                    
+                    if (order) {
+                        document.getElementById('customerName').value = order.customer;
+                        document.getElementById('customerEmail').value = order.email;
+                        document.getElementById('product').value = order.product;
+                        document.getElementById('orderStatus').value = order.status;
+                        document.getElementById('trackingCode').value = order.code;
+                    }
+                } else {
+                    // Modo criação
+                    modalTitle.innerHTML = '<i class="fas fa-plus-circle"></i> Novo Pedido';
+                    
+                    // Limpar formulário
+                    orderForm.reset();
+                    generateTrackingCode();
+                }
+                
+                orderModal.classList.add('active');
+            }
+            
+            // Gerar código de rastreamento
+            function generateTrackingCode() {
+                const prefix = 'TRK';
+                const randomNum = Math.floor(100000 + Math.random() * 900000);
+                const code = `${prefix}${randomNum}`;
+                trackingCodeField.value = code;
+            }
+            
+            // Manipular salvamento de pedido
+            function handleSaveOrder(e) {
+                e.preventDefault();
+                
+                // Coletar dados do formulário
+                const orderData = {
+                    id: currentOrderId || Date.now().toString(),
+                    code: document.getElementById('trackingCode').value,
+                    customer: document.getElementById('customerName').value,
+                    email: document.getElementById('customerEmail').value,
+                    product: document.getElementById('product').value,
+                    status: document.getElementById('orderStatus').value,
+                    date: currentOrderId ? undefined : new Date().toISOString().split('T')[0],
+                    estimatedDelivery: calculateDeliveryDate(),
+                    updates: currentOrderId ? undefined : [
+                        { 
+                            status: 'pending', 
+                            description: 'Pedido recebido', 
+                            date: new Date().toISOString().split('T')[0] 
+                        }
+                    ]
+                };
+                
+                // Obter pedidos existentes
+                let orders = JSON.parse(localStorage.getItem('orders')) || [];
+                
+                if (currentOrderId) {
+                    // Atualizar pedido existente
+                    const index = orders.findIndex(o => o.id === currentOrderId);
+                    if (index !== -1) {
+                        // Manter dados existentes que não foram alterados
+                        orderData.date = orders[index].date;
+                        orderData.updates = orders[index].updates;
+                        
+                        // Atualizar pedido
+                        orders[index] = { ...orders[index], ...orderData };
+                    }
+                } else {
+                    // Adicionar novo pedido
+                    orders.push(orderData);
+                }
+                
+                // Salvar no localStorage
+                localStorage.setItem('orders', JSON.stringify(orders));
+                
+                // Fechar modal
+                orderModal.classList.remove('active');
+                
+                // Atualizar dashboard
+                loadDashboardData();
+                
+                // Limpar formulário
+                orderForm.reset();
+                currentOrderId = null;
+                
+                alert(currentOrderId ? 'Pedido atualizado com sucesso!' : 'Pedido criado com sucesso!');
+            }
+            
+            // Calcular data de entrega estimada
+            function calculateDeliveryDate() {
+                const today = new Date();
+                const deliveryDate = new Date(today);
+                deliveryDate.setDate(today.getDate() + 10); // 10 dias a partir de hoje
+    
+                return deliveryDate.toISOString().split('T')[0];
+            }
+            
+            // Abrir modal de atualização
+            function openUpdateModal() {
+                const code = prompt('Digite o código do pedido que deseja atualizar:');
+                
+                if (!code) return;
+                
+                const orders = JSON.parse(localStorage.getItem('orders')) || [];
+                const order = orders.find(o => o.code === code.toUpperCase());
+                
+                if (order) {
+                    currentOrderId = order.id;
+                    document.getElementById('updateStatus').value = order.status;
+                    updateModal.classList.add('active');
+                } else {
+                    alert('Pedido não encontrado!');
+                }
+            }
+            
+            // Manipular atualização de pedido
+            function handleUpdateOrder(e) {
+                e.preventDefault();
+                
+                const newStatus = document.getElementById('updateStatus').value;
+                const description = document.getElementById('updateDescription').value;
+                
+                if (!description) {
+                    alert('Por favor, digite uma descrição para a atualização.');
+                    return;
+                }
+                
+                // Obter pedidos
+                let orders = JSON.parse(localStorage.getItem('orders')) || [];
+                const orderIndex = orders.findIndex(o => o.id === currentOrderId);
+                
+                if (orderIndex === -1) {
+                    alert('Pedido não encontrado!');
+                    return;
+                }
+                
+                // Atualizar status do pedido
+                orders[orderIndex].status = newStatus;
+                
+                // Adicionar nova atualização ao histórico
+                const newUpdate = {
+                    status: newStatus,
+                    description: description,
+                    date: new Date().toISOString().split('T')[0]
+                };
+                
+                if (!orders[orderIndex].updates) {
+                    orders[orderIndex].updates = [];
+                }
+                
+                orders[orderIndex].updates.push(newUpdate);
+                
+                // Salvar alterações
+                localStorage.setItem('orders', JSON.stringify(orders));
+                
+                // Fechar modal
+                updateModal.classList.remove('active');
+                
+                // Atualizar dashboard
+                loadDashboardData();
+                
+                // Limpar formulário
+                updateForm.reset();
+                currentOrderId = null;
+                
+                alert('Status do pedido atualizado com sucesso!');
+            }
+            
+            // Limpar todos os dados
+            function clearAllData() {
+                if (confirm('Tem certeza que deseja limpar todos os dados? Esta ação não pode ser desfeita.')) {
+                    localStorage.removeItem('orders');
+                    localStorage.removeItem('recentCodes');
+                    
+                    // Reinicializar dados
+                    initializeData();
+                    
+                    // Atualizar dashboard
+                    loadDashboardData();
+                    showRecentCodes();
+                    
+                    alert('Todos os dados foram limpos e redefinidos para os valores padrão.');
+                }
+            }
+            
+            // Funções globais para uso nos botões da tabela
+            window.viewOrder = function(orderId) {
+                const orders = JSON.parse(localStorage.getItem('orders')) || [];
+                const order = orders.find(o => o.id === orderId);
+                
+                if (order) {
+                    trackingCodeInput.value = order.code;
+                    handleTrackOrder();
+                }
+            };
+            
+            window.editOrder = function(orderId) {
+                openOrderModal(orderId);
+            };
+        });
+    </script>
+</body>
+</html>

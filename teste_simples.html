@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teste Simples</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+            margin: 0;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #2c3e50;
+            text-align: center;
+        }
+        .status {
+            background: #d4edda;
+            color: #155724;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 20px 0;
+        }
+        .links {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+        .links a {
+            display: block;
+            padding: 15px;
+            background: #5dade2;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            text-align: center;
+            transition: background 0.3s;
+        }
+        .links a:hover {
+            background: #2980b9;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🚀 Sistema Demostra - Teste de Conexão</h1>
+        <div class="status">
+            ✅ Servidor online e funcionando!<br>
+            Horário: <script>document.write(new Date().toLocaleString('pt-BR'));</script>
+        </div>
+
+        <h2>Arquivos Disponíveis:</h2>
+        <div class="links">
+            <a href="index.php">← Voltar ao Sistema Principal</a>
+            <a href="indexteste.php">Versão de Teste</a>
+            <a href="ma.php">Página MA</a>
+            <a href="manutencao.php">Modo Manutenção</a>
+        </div>
+
+        <h2>Como organizar os campos de CPF:</h2>
+        <ol>
+            <li>Dê preferência a campos com máscara automática (000.000.000-00)</li>
+            <li>Use validação em tempo real para feedback visual</li>
+            <li>Mantenha uma estrutura visual organizada com ícones e cores</li>
+            <li>Add placeholders descritivos para guiar o usuário</li>
+        </ol>
+    </div>
+</body>
+</html>
