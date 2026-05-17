@@ -154,7 +154,31 @@ npm install -g git+https://github.com/<seu_usuario>/<seu_repositorio>.git
 npm install -g https://github.com/<seu_usuario>/<seu_repositorio>/archive/refs/heads/main.zip
 ```
 >
+> Essa versão ZIP baixa apenas o código e não exige login GitHub durante a instalação.
+>
+> Outra opção é publicar o pacote no npm e instalar com:
+>
+> ```
+npm install -g <seu-nome-de-usuario>/<seu-pacote>
+```
+>
 Depois de instalado globalmente, o comando `amzbelly` ficará disponível em qualquer pasta.
+
+### Configuração segura de credenciais
+O arquivo `data/config.json` deve ficar local e não precisa ser enviado ao GitHub.
+Use `data/config.example.json` como modelo para criar seu próprio `data/config.json`.
+
+No Windows CMD:
+```
+copy data\config.example.json data\config.json
+```
+
+No PowerShell ou Linux/macOS:
+```
+cp data/config.example.json data/config.json
+```
+
+Preencha apenas as chaves reais no `data/config.json`, sem enviar essas credenciais ao repositório.
 
 ### Exemplo de instalação global local
 ```
